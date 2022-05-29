@@ -61,7 +61,6 @@ Tmux 的組合鍵要先按 Ctrl 跟 b 再按其它鍵
 | `<Ctrl+b>` + ( | 切換至上一個 session |  
 | `<Ctrl+b>` + ) | 切換至下一個 session |  
 
-
 ### Session 指令
 
 | Session 指令 | 說明 | 
@@ -69,6 +68,22 @@ Tmux 的組合鍵要先按 Ctrl 跟 b 再按其它鍵
 | $ tmux ls | 列出目前開啟的 session |  
 | $ tmux at -t {Session name} | 連接到指定的 session |  
 | $ tmux kill-session -t {Session name} | 連接到指定的 session |  
+
+## Window 組合鍵
+
+| Window 組合鍵 | 說明 |  
+| ----- | ----- |  
+| `<Ctrl+b>` + c | 建立新 window 視窗 |  
+| `<Ctrl+b>` + w | 以視覺化選單切換 window 視窗 |  
+| `<Ctrl+b>` + n | 切換至下一個 window 視窗 |  
+| `<Ctrl+b>` + p | 切換至上一個 window 視窗 |  
+| `<Ctrl+b>` + 數字鍵 | 切換至指定的 window 視窗 |  
+| `<Ctrl+b>` + x | 關閉目前的 window 視窗 |  
+| `<Ctrl+b>` + f | 在所有 window 視窗中搜尋關鍵字 |  
+
+
+
+
 
 
 ## 參考資料
