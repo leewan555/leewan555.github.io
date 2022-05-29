@@ -146,11 +146,11 @@ $ docker inspect --format='{\{jason .____}}' <Container 名稱或 ID>
 ```bash
 # 擷取 Container 狀態資訊，相關資訊會放在 [State] 欄位區段
 # 注意！因為部落格的問題，實際操作上請把 --format 後的反斜線(\)刪除！
-$ docker inspect --format='{{json .State}}' <Container 名稱或 ID> 
+$ docker inspect --format='{\{json .State}}' <Container 名稱或 ID> 
 
 # 查看 [State] 欄位區段裡的 [Status] 欄位值
 # 注意！因為部落格的問題，實際操作上請把 --format 後的反斜線(\)刪除！
-$ docker inspect --format='{{json .State.Status}}' <Container 名稱或 ID>
+$ docker inspect --format='{\{json .State.Status}}' <Container 名稱或 ID>
 ```
 ![](/assets/images/2022-05-28-Docker-Command-18/7.JPG)
 
