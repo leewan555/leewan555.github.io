@@ -12,6 +12,11 @@ categories:
 | ----- |  
 | Centos 7.6 | 
 
+## Tmux 組合鍵注意事項
+注意！  
+Tmux 的組合鍵要先按 Ctrl 跟 b 再按其它鍵    
+不是同時按 Ctrl 跟 b，是先按 Ctrl 再按 b  
+我一開始被這個組合鍵雷了好幾次，還以為是 Tmux 壞掉  
 
 
 ## 參考資料
