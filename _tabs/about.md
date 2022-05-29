@@ -4,5 +4,20 @@ icon: fas fa-info-circle
 order: 4
 ---
 
-> Add Markdown syntax content to file `_tabs/about.md`{: .filepath } and it will show up on this page.
-{: .prompt-tip }
+Hi，我是 Fred，目前正在往系統工程師的路上前進。  
+
+- 遇到感興趣的事情會投入到忘記吃飯  
+
+- 腦袋裡有很多想法，但是很常只是嘴巴說說  
+
+- 有一大堆筆記想分享，但是又很懶得打成文章
+
+- 喜歡泡水，享受被水包覆住的感覺  
+
+- 雖然會去運動，但是管不住自己愛吃的嘴
+
+- 吃很清淡但又喜歡吃垃圾食物，所以時常抱怨食物很重口味
+
+- 假日不知道要去哪，所以就待在家裡了
+
+簡單來說就是個又懶又宅的工程師。  
