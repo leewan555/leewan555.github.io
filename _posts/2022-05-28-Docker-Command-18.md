@@ -134,24 +134,25 @@ $ docker inspect <Container 名稱或 ID>
 ```
 因為 docker inspect 資訊很多，所以可以使用 --format 選項，來擷取部分所需的資訊，加上 json 代表傳回的格式是 JSON。
 
+{% raw %}
 ```bash
 # 使用 --format (-f) 選項來擷取 Container 部分資訊
 # ._____  代表某個欄位區段，大小寫要和 JSON 資料裡的欄位值完全相同，譬如狀態資訊就是 .State
 
-# 注意！因為部落格的問題，實際操作上請把 --format 後的反斜線(\)刪除！
-$ docker inspect --format='{\{jason .____}}' <Container 名稱或 ID>
+$ docker inspect --format='{{jason .____}}' <Container 名稱或 ID>
 ```
+{% raw %}
 
-
+{% raw %}
 ```bash
 # 擷取 Container 狀態資訊，相關資訊會放在 [State] 欄位區段
-# 注意！因為部落格的問題，實際操作上請把 --format 後的反斜線(\)刪除！
-$ docker inspect --format='{\{json .State}}' <Container 名稱或 ID> 
+$ docker inspect --format='{{json .State}}' <Container 名稱或 ID> 
 
 # 查看 [State] 欄位區段裡的 [Status] 欄位值
-# 注意！因為部落格的問題，實際操作上請把 --format 後的反斜線(\)刪除！
-$ docker inspect --format='{\{json .State.Status}}' <Container 名稱或 ID>
+$ docker inspect --format='{{json .State.Status}}' <Container 名稱或 ID>
 ```
+{% endraw %}
+
 ![](/assets/images/2022-05-28-Docker-Command-18/7.JPG)
 
 ![](/assets/images/2022-05-28-Docker-Command-18/8.JPG)
