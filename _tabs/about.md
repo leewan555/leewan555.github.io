@@ -2,6 +2,7 @@
 title: About
 icon: fas fa-info-circle
 order: 4
+navigation: true
 ---
 
 Hi，我是 Fred，目前正在往系統工程師的路上前進。  
