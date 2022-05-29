@@ -81,10 +81,19 @@ Tmux 的組合鍵要先按 Ctrl 跟 b 再按其它鍵
 | `<Ctrl+b>` + x | 關閉目前的 window 視窗 |  
 | `<Ctrl+b>` + f | 在所有 window 視窗中搜尋關鍵字 |  
 
+## Pane 組合鍵及指令
 
-
-
-
+| Pane 組合鍵 | 說明 |  
+| ----- | ----- |  
+| `<Ctrl+b>` + " | 進行水平分割 (上下分割畫面) |  
+| `<Ctrl+b>` + % | 進行垂直分割 (左右分割畫面) |  
+| `<Ctrl+b>` + <方向鍵> | 移動到其他 pane |  
+| `<Ctrl+b>` + <Space> | 切換佈局 |  
+| `<Ctrl+b>` + <Alt+方向鍵> | 一格為單位的調整 pane 大小 |  
+| `<Ctrl+b>` + <Alt+o> | 逆時針旋轉當前 pane |  
+| `<Ctrl+b>` + <Ctrl+o> | 順時針旋轉當前pane |  
+| `<Ctrl+b>` + x | 關閉目前的 pane |  
+| `<Ctrl+b>` + z | 全螢幕目前的 pane |  
 
 ## 參考資料
 - [終端機 session 管理神器 — tmux](https://larrylu.blog/tmux-33a24e595fbc) 
