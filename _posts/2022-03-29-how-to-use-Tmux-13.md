@@ -26,7 +26,6 @@ Tmux 會在同一個 session 下保存 window 和 pane，若暫時離開這個 s
 
 Tmux 會一直維持你上次離開 session 時的狀態，除非主機重開機，或是你自己把 Tmux 或 session 刪掉，才會不見。
 
-
 ## Tmux 功能
  - 分割視窗
  - 同時開啟多個視窗
@@ -34,6 +33,23 @@ Tmux 會一直維持你上次離開 session 時的狀態，除非主機重開機
 
 ## Session & Window & Pane 圖片解說
 晚點放上
+
+## 安裝及使用 Tmux
+
+```bash
+# 安裝 tumx
+$ yum install tmux -y
+
+# 使用 tmux
+$ tmux
+```
+
+## Tmux 組合鍵注意事項
+注意！  
+Tmux 的組合鍵要先按 Ctrl 跟 b 再按其它鍵    
+不是同時按 Ctrl 跟 b，是先按 Ctrl 再按 b  
+我一開始被這個組合鍵雷了好幾次，還以為是 Tmux 壞掉  
+
 
 
 
