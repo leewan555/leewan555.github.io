@@ -34,8 +34,8 @@ url: 'https://notes.lookfred.com/'
 github:
   username: leewan555             # change to your github username
 
-twitter:
-  username: twitter_username            # change to your twitter username
+#twitter:
+#  username: twitter_username            # change to your twitter username
 
 social:
   # Change to your full name.
@@ -81,7 +81,7 @@ theme_mode:   # [light|dark]
 #
 # e.g. 'https://cdn.com'
 img_cdn:
-
+ 
 # the avatar on sidebar, support local or CORS resources
 avatar: "/assets/images/cat.jpg"
 
@@ -115,7 +115,7 @@ assets:
     # only works if `assets.self_host.enabled` is 'true'
     env:          # [development|production]
 
-paginate: 10
+paginate: 15
 
 # ------------ The following options are not recommended to be modified ------------------
 
