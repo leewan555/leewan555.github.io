@@ -13,8 +13,6 @@ categories:
 | Centos 7.6 | 
 | Docker | 
 
-![](/assets/images/2022-05-28-Docker-Command-18/1.JPG)
-
 ## 一、找到要用的硬像（Image）檔
 ### (1) 尋找某個 Docker Image
 ```bash
