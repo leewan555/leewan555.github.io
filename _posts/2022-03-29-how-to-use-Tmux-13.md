@@ -50,7 +50,25 @@ Tmux 的組合鍵要先按 Ctrl 跟 b 再按其它鍵
 不是同時按 Ctrl 跟 b，是先按 Ctrl 再按 b  
 我一開始被這個組合鍵雷了好幾次，還以為是 Tmux 壞掉  
 
+## Session 組合鍵及指令
 
+| Session 組合鍵 | 說明 |  
+| ----- | ----- |  
+| `<Ctrl+b>` + d | 把 session 放到背景並離開 tmux 環境 |  
+| `<Ctrl+b>` + $ | 重新命名目前的 session |  
+| `<Ctrl+b>` + s | 以視覺化選單切換 session |  
+| `<Ctrl+b>` + L | 切換至上一個使用過的 session |  
+| `<Ctrl+b>` + ( | 切換至上一個 session |  
+| `<Ctrl+b>` + ) | 切換至下一個 session |  
+
+
+### Session 指令
+
+| Session 指令 | 說明 | 
+| ----- | ----- |   
+| $ tmux ls | 列出目前開啟的 session |  
+| $ tmux at -t {Session name} | 連接到指定的 session |  
+| $ tmux kill-session -t {Session name} | 連接到指定的 session |  
 
 
 ## 參考資料
