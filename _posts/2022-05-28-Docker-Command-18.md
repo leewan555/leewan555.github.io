@@ -141,7 +141,7 @@ $ docker inspect <Container 名稱或 ID>
 
 $ docker inspect --format='{{jason .____}}' <Container 名稱或 ID>
 ```
-{% raw %}
+{% endraw %}
 
 {% raw %}
 ```bash
