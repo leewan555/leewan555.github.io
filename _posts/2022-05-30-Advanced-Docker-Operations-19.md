@@ -122,7 +122,7 @@ $docker run --restart=on-failure:5 nginx
 {% endraw %}
 
 ## 八、進入 Container 操作命令列
->> docker run -it --name nginx-cmd nginx /bin/bash -> 用 docker run 也可以。
+>> docker run -it \--name nginx-cmd nginx /bin/bash -> 用 docker run 也可以。
 
 ```bash
 # -t：把 Container 開在"互動模式"
@@ -147,7 +147,7 @@ $ docker run -p 192.168.1.1:80:80 -d nginx
 $ docker run -p 127.0.0.1:80:80 -d nginx
 ```
 ## 十、建立多個 Container 專用的 Docker 網路
->> 除了 docker network 之外，docker run 有個 --link 選項也可以把兩個 Container 串接在一起，不過限制多，官方也不建議繼續使用 Docker link 的功能，還是建議用 Docker 網路，不然就是用 Docker Compose 來達到。
+>> 除了 docker network 之外，docker run 有個 \--link 選項也可以把兩個 Container 串接在一起，不過限制多，官方也不建議繼續使用 Docker link 的功能，還是建議用 Docker 網路，不然就是用 Docker Compose 來達到。
 
 ```bash
 # 建立 Docker 網路
@@ -160,7 +160,7 @@ $ docker run --name=<Contianer 名稱> --net=<網路名稱>
 
 在虛擬機時，會把網站伺服器跟資料庫系統這兩套都安裝同一個虛擬機上。  
 
-但在 Container 上，就不建議這樣的作法，比較建議用 docker network 建立一個 Docker 網路，然後再把這兩套軟體分別啟動為獨立的 Container，同時在 docker run 的時候，利用 --net 選項將這兩個 Container 加到同一個 Docker 網路之中。
+但在 Container 上，就不建議這樣的作法，比較建議用 docker network 建立一個 Docker 網路，然後再把這兩套軟體分別啟動為獨立的 Container，同時在 docker run 的時候，利用 \--net 選項將這兩個 Container 加到同一個 Docker 網路之中。
 ```bash
 # 建立 nginx-a 和 nginx-b 兩個 Container 然後加入到 nginx-net 的 Docker 網路，然後 nginx-a 用 ping 指令加上 nginx-b 的 Container 名稱就可以 ping 到 nignx-b，而不用知道 nginx-b 的 IP
 $ docker network create  nignx-net
