@@ -282,13 +282,12 @@ $ iptables -A INPUT -i eth0 -p tcp -s 192.168.1.0/24  --sport 1024:65534 --dport
 
 
 ## 參考資料
-- [https://blog.xuite.net/towns/hc/81675609](https://blog.xuite.net/towns/hc/81675609)  
-- [https://blog.johnsonlu.org/ubuntuiptables-%E8%A8%AD%E5%AE%9A/](https://blog.johnsonlu.org/ubuntuiptables-%E8%A8%AD%E5%AE%9A/) 
-- [https://hoohoo.top/blog/iptables/](https://hoohoo.top/blog/iptables/) 
-- [https://www.gushiciku.cn/pl/pA7I/zh-tw](https://www.gushiciku.cn/pl/pA7I/zh-tw) 
-- [https://blog.aronyang.com/2021/07/iptables.html](https://blog.aronyang.com/2021/07/iptables.html) 
-- [https://ithelp.ithome.com.tw/articles/10079931](https://ithelp.ithome.com.tw/articles/10079931) 
-- [https://iter01.com/550867.html](https://iter01.com/550867.html) 
+- [IPTABLES 應用與管理](https://blog.xuite.net/towns/hc/81675609)  
+- [[Ubuntu]iptables 設定](https://blog.johnsonlu.org/ubuntuiptables-%E8%A8%AD%E5%AE%9A/) 
+- [iptables](https://hoohoo.top/blog/iptables/) 
+- [iptables系列教程（一）| iptables入門篇](https://www.gushiciku.cn/pl/pA7I/zh-tw) 
+- [邁向 RHCE 之路 (Day22) - IPTables 防火牆 ](https://ithelp.ithome.com.tw/articles/10079931) 
+- [iptables基礎原理和使用簡介](https://iter01.com/550867.html) 
  
 
 
