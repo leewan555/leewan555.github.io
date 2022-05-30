@@ -65,6 +65,9 @@ docker run 在執行之後就會立刻運行
 Docker Container 的檔案系統是用疊層（Layer）的方式儲存，會比常見的檔案儲存更耗用空間（用一種層疊的方式來新增資料，每次新增資料，就會產生一層新資料層來疊在原來所使用的 Docker Image 上）。  
 
 如果直接把資料庫檔案存在 Container 內部，就會因為產生大量的新資料層而快速吃掉硬碟空間，如果之後想把資料帶走，就要匯出這個 Container 來產生新的 Docker Image，超級麻煩。  
+
+所以就可以外掛 Container 的儲存空間，把資料另外存下來。  
+
 ```bash
 # 執行 Container 的同時加上 -v 可以掛上外部的硬碟空間
 $ docker run -v <外部資料夾或檔案的完整路徑>:<Container 內部要被取代的資料夾完整路徑> -p <對外的埠號>:<預設的埠號> -d <Docker Image 名稱>
