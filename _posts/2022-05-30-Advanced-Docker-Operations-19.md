@@ -15,8 +15,8 @@ categories:
 
 ## 一、幫 Container 取名字
 ```bash
-#執行 Container 時，加上 --name 可同時命名該 Container 的名字
-#若是不取名，就會有 Docker 自動產生的名字
+# 執行 Container 時，加上 --name 可同時命名該 Container 的名字
+# 若是不取名，就會有 Docker 自動產生的名字
 $ docker run --name <Container 名稱> -p <對外的埠號>:<預設的埠號> -d <Docker Image 名稱>
 
 # 把 nginx Container 取名成 nginx
