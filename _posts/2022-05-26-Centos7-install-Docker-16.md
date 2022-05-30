@@ -14,7 +14,7 @@ categories:
 | Docker | 
 
 
-## Docker 介紹
+## 一、Docker 介紹
 
 Docker 是 Container 管理工具。    
 
@@ -29,41 +29,41 @@ Container 比虛擬機器輕巧且具可攜性，因為 Container 可共用 Linu
 提供更多整合性的基礎架構及雲端服務，如果需要代管 Docker Images、提供私有 Docker Registry 儲存庫、合併各家雲端服務和自動部署服務，可考慮採用。  
 
 
-## CentOS 安裝 Docker CE
-### 一、安裝必要套件
+## 二、CentOS 安裝 Docker CE
+### (1) 安裝必要套件
 ```bash
 $ yum install -y yum-utils \
   device-mapper-persistent-data lvm2
 ```
 
-### 二、新增Docker官方的stable套件庫(repository)
+### (2) 新增Docker官方的stable套件庫(repository)
 ```bash
 $ yum-config-manager \
   --add-repo \
   https://download.docker.com/linux/centos/docker-ce.repo
 ```
 
-### 三、更新 yum 的套件索引
+### (3) 更新 yum 的套件索引
 ```bash
 $ yum makecache fast
 ```
 
-### 四、安裝 Docker CE 版
+### (4) 安裝 Docker CE 版
 ```bash
 $ yum install docker-ce
 ```
 
-### 五、安裝好之後，啟動系統的 Docker 服務
+### (5) 安裝好之後，啟動系統的 Docker 服務
 ```bash
 $ systemctl start docker
 ```
 
-### 六、確認 Docker 版本
+### (6) 確認 Docker 版本
 ```bash
 $ docker version
 ```
 
-### 七、執行 hello world 程式測試
+### (7) 執行 hello world 程式測試
 ```bash
 $ docker run hello-world
 ```

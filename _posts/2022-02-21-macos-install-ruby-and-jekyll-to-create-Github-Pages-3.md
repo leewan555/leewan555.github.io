@@ -13,17 +13,14 @@ categories:
 | MacOS Mojave 10.14.6 | 
 | Ruby 2.7.5 | 
 
-## Jekyll 介紹
+## 一、Jekyll 介紹
 Jekyll 是用 Ruby 撰寫的靜態部落格框架，可以將靜態網站的 Markdown 語法轉成 HTML 語法。  
 
 靜態網頁就是不包含資料庫，也不能和使用者互動的單純網頁，通常內容也不會時常變動。  
 
 因此，Jekyll 對於要發展部落格的使用者來說非常方便。  
 
-## 開始！
-
-
-### 步驟1－MacOS Install Homebrew
+### (1) MacOS Install Homebrew
 Homebrew 是軟體套件管理系統，支援 MacOS 和 Linux，非常好用，大推！  
 如果是使用 Ubuntu 或 CentOS 或其他版本的 Linux，可以不用裝 Homebrew  
 ```bash
@@ -32,7 +29,7 @@ $ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/
 # 若已經安裝過 Homebrew 則需要更新
 $ brew update
 ```
-### 步驟2－Install Ruby
+### (2) Install Ruby
 ```bash
 # 請先不要用這個！
 $ brew install ruby
@@ -60,7 +57,7 @@ $ ruby -v
 $ gem -v
 ```
 
-### 步驟3－Install jekyll 和 bundler
+### (3) Install jekyll 和 bundler
 ```bash
 $ gem update
 $ gem install jekyll bundler
@@ -69,7 +66,7 @@ $ jekyll -v
 $ bundle -v
 ```
 
-### 步驟4－使用 minimal-mistakes 主題
+### (4) 使用 minimal-mistakes 主題
 也可以去下載其他主題，現在先以 minimal-mistakes 作為示範
 ```bash
 $ git clone https://github.com/mmistakes/minimal-mistakes.git
@@ -77,7 +74,7 @@ $ git clone https://github.com/mmistakes/minimal-mistakes.git
 $ cd minimal-mistakes
 $ bundle install
 ```
-### 步驟5－執行 Jekyll
+### (5) 執行 Jekyll
 ```bash
 # 啟動 Jekyll 有兩種指令方式，兩種都可以用！
 $ jekyll serve
@@ -89,14 +86,14 @@ $ bundle exec jekyll serve
 
 
 
-### 步驟6－在瀏覽器上打 http://127.0.0.1:4000
+### (6) 在瀏覽器上打 http://127.0.0.1:4000
 完成！就可以看到目前主題的樣子了  
 這時候就可以參考 [官方文件](https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/ "官方文件") 上的教學去更改主題的設定  
 可以新增主選單、主題或是更改樣式
 自由發揮！
 
-## Github Page 
-Giuhub Page 教學請看 **此篇文章**  
+## 二、Github Page 
+Giuhub Page 教學請看 [此篇文章](https://notes.lookfred.com/posts/How-to-use-Github-Pages-2/)  
 若是 clone 別人的主題，記得在 push 時不能直接 push 喔，因為那是別人的 Repo！  
 如果是使用 Github Desktop，記得按 Repository Setting -> Remote -> Primary remote repositoey (origin)  
 在欄內輸入自己的 Github Pages 的 Repo 的網址，成功在 Github Desktop 上顯示後再 push 上去喔～  

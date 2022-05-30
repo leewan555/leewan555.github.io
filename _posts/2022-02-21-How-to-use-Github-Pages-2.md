@@ -18,8 +18,8 @@ GitHub Pages 是 GitHub 提供的一個網頁代管服務，可以讓使用者�
 2. 僅能使用 Git 上傳  
 3. GitHub Pages 的 Repo 都是公開的  
 
-## Github Pages 設定
-### 步驟1－建立一個想作為 Github Pages 的 Repo
+## 一、Github Pages 設定
+### (1) 建立一個想作為 Github Pages 的 Repo
 按下最右邊綠色的 New  
 
 ![](/assets/images/2022-02-21-How-to-use-Github-Pages-2/1.png)  
@@ -36,7 +36,7 @@ GitHub Pages 是 GitHub 提供的一個網頁代管服務，可以讓使用者�
 
 ![](/assets/images/2022-02-21-How-to-use-Github-Pages-2/2.png)  
 
-### 步驟2－Repo 建立成功
+### (2) Repo 建立成功
 看到這個畫面表示你已經成功建立你的 Repo 了  
 
 ![](/assets/images/2022-02-21-How-to-use-Github-Pages-2/3.png)  
@@ -56,7 +56,7 @@ GitHub Pages 是 GitHub 提供的一個網頁代管服務，可以讓使用者�
 ![](/assets/images/2022-02-21-How-to-use-Github-Pages-2/6.png)  
 
 
-### 步驟3－開始設定 Github Pages
+### (3) 開始設定 Github Pages
 按最右邊的`Settings`  
 
 ![](/assets/images/2022-02-21-How-to-use-Github-Pages-2/7.png)  
@@ -89,7 +89,7 @@ Branch 可以先選`None`，也可以選擇其他分支（範例選 main）
 
 ![](/assets/images/2022-02-21-How-to-use-Github-Pages-2/13.png)  
 
-### 步驟4－訪問你的 Github Pages
+### (4) 訪問你的 Github Pages
 Github Pages 的 網址是 **[USERNAME].github.io**  
 
 像這樣`leewan555.github.io`  

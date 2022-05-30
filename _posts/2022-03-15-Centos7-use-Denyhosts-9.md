@@ -15,7 +15,7 @@ categories:
 | Python 2.7.5 | 
 | Python 3.6.8 | 
 
-## DenyHosts 介紹
+## 一、DenyHosts 介紹
 
 DenyHosts 是一個防止暴力攻擊 SSH 的工具,  
 當有人想要惡意 try 機器的 SSH 帳號密碼時，它會監看及分析 SSH 的 log file (譬如 /var/log/secure)。   
@@ -25,7 +25,7 @@ DenyHosts 是一個防止暴力攻擊 SSH 的工具,
 但是它只能單純攔截 ssh 攻擊，  
 若想要比較全面一點的防護可以參考這篇文章 (要放 Fail2ban 的連結)。  
 
-## DenyHosts 安裝
+## 二、DenyHosts 安裝
 ```bash
 # 在自己想要的資料夾底下將資料夾 clone 下來 (舉例在 /usr/local 資料夾)
 $ cd /usr/local
@@ -56,13 +56,13 @@ $ python setup.py install
 
 ![](/assets/images/2022-03-15-Centos7-use-Denyhosts-9/3.jpg)
 
-## DenyHosts 基本設定
-### DenyHosts 的設定檔
+## 三、DenyHosts 基本設定
+### (1) DenyHosts 的設定檔
 ```
 /etc/denyhosts.conf
 ```
 
-### 編輯檔案及介紹
+### (2) 編輯檔案及介紹
 ```bash 
 $ vim /etc/denyhosts.conf
 ```
@@ -103,7 +103,7 @@ DENY_THRESHOLD_VALID = 10
 DENY_THRESHOLD_ROOT = 3
 ```
 
-## WORK_DIR 資料夾底下會有的檔案
+## 四、WORK_DIR 資料夾底下會有的檔案
 裡面是放黑名單 IP 的檔案。
 1. hosts
 2. hosts-restricted
@@ -112,7 +112,7 @@ DENY_THRESHOLD_ROOT = 3
 5. users-hosts
 
 
-## 解除被封鎖的 IP
+## 五、解除被封鎖的 IP
 開啟以下六個檔案，個別手動註解或刪除解封的 IP。
 ```bash
 # 此篇範例的 WORK_DIR 路徑在 /usr/local/denyhosts/data 
@@ -125,7 +125,7 @@ $ vim /usr/local/denyhosts/data/users-hosts
 ```
 也有一些指令可以直接解除被封鎖的 IP，但是實際測試不起作用，所以暫且不談。
 
-## Denyhosts 的白名單 IP 設定
+## 六、Denyhosts 的白名單 IP 設定
 若想要設定**不想**被 DenyHosts 封鎖的 IP，可以建立白名單。  
 
 在 WORK_DIR 路徑建立一個新檔案 `allowed-hosts`，檔案內容是一行各一個白名單 IP。
@@ -138,11 +138,9 @@ $ cd /usr/local/denyhosts/data
 # 建立並編輯白名單檔案
 $ vim allowed-hosts 
 ```
+## 七、開始使用 Denyhosts 
 
-
-## 開始使用 Denyhosts 
-
-### 啟動 Denyhosts
+### (1) 啟動 Denyhosts
 > 啟動前，務必要先清空或分割 sshd 的 log 檔，不然自己會先被封鎖。 
 
 ```bash
@@ -161,14 +159,14 @@ $ ./daemon-control-dist status
 # 停止 Denyhosts
 $ ./daemon-control-dist stop
 ``` 
-### 分割 sshd 的 log 檔 (/var/log/secure)
+### (2) 分割 sshd 的 log 檔 (/var/log/secure)
 想要馬上分割 /var/log/secure 檔案，可以強制執行 logrotate，而不用等定期的分割時間。 
 
 ```bash
 logrotate -vf /etc/logrotate.conf 
 ``` 
 
-## 若 /var/log/secure 不紀錄 log 
+## 八、若 /var/log/secure 不紀錄 log 
 先試著重新啟動 rsyslog，再觀察看看。
 ```bash
 $ service rsyslog restart 

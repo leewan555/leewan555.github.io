@@ -14,7 +14,7 @@ categories:
 | iptables v1.4.21 | 
 
 
-## iptables 介紹
+## 一、iptables 介紹
 CentOS 7 的防火牆套件有 iptables 和 firewalld，兩者的核心都是以 netfilter 來實現。  
 
 可藉由設定規則來過濾傳入或傳出的封包，然後寫好的規則會被送往 netfilter，告訴核心如何去處理封包。  
@@ -25,48 +25,48 @@ CentOS 7 的防火牆套件有 iptables 和 firewalld，兩者的核心都是以
 
 
 
-## iptables 可以做到的事情
+## 二、iptables 可以做到的事情
 1. 
 2. 
 3. 
 
 
-## 開始使用 iptables
-### 安裝 iptables 
+## 三、開始使用 iptables
+### (1) 安裝 iptables 
 ```bash
 yum install iptables -y
 ```
-### 啟動 iptables
+### (2) 啟動 iptables
 ```bash
 systemctl start iptables
 ```
 
-### 重新啟動 iptables
+### (3) 重新啟動 iptables
 ```bash
 systemctl restart iptables
 ```
 
-### 查看 iptables 狀態
+### (4) 查看 iptables 狀態
 ```bash
 systemctl status iptables
 ```
 
-### 停止 iptables
+### (5) 停止 iptables
 ```bash
 systemctl stop iptables
 ```
 
-### 設定開機自動啟動
+### (6) 設定開機自動啟動
 ```bash
 systemctl enable iptables
 ```
 
-## iptables 的主要設定檔位置
+## 四、iptables 的主要設定檔位置
 ```bash
 /etc/sysconfig/iptables
 ```
 
-## iptables 狀態說明
+## 五、iptables 狀態說明
 iptables 查看狀態時是 `Active: active (exited)`   
 而不是 `Active: active (running)`  
 
@@ -84,7 +84,7 @@ ExecStart=/usr/libexec/iptables/iptables.init start
 沒有 daemon 會持續執行，狀態就會是 active (excited)  
 
 
-## iptables 定義規則的方式 (以下皆可)
+## 六、iptables 定義規則的方式 (以下皆可)
 ### (1) iptables 設定檔直接編輯修改
 ```bash
 $ vim /etc/sysconfig/iptables
@@ -111,13 +111,13 @@ $ systemctl restart iptables
 底下有介紹  
 [按這裡！](https://notes.lookfred.com/linux/Linux-iptables-7/#iptables-%E6%8C%87%E4%BB%A4)  
 
-## iptables 結構
+## 七、iptables 結構
 iptables 主要分為三個部分：  
 - Tables (表)：就是一份防火牆的規則表，可包含多組 Chain  
 - Chains (鏈)：是 Rules 規則的鏈群組，可包含多個 Rule  
 - Rules (規則)：每一個單獨設立的規則  
 
-## iptables 預設的三個 Tables
+## 八、iptables 預設的三個 Tables
 內建的表有三個，分別是：nat、mangle 和 filter，當未指定規則表時，則一律視為是 filter。 
  
 另外，還有兩個 Tables (Raw、 Security) 暫時先不談。  
@@ -134,7 +134,7 @@ iptables 主要分為三個部分：
 |  |  早期僅有 PREROUTING 及 OUTPUT，不過從 kernel 2.4.18 之後加入了 INPUT 及 FORWARD   |  
 |  | 由於這個表格與特殊旗標相關性較高，所以在單純的環境當中，較少使用 mangle 這個表格  |  
 
-## 五種階段的 Chains 介紹
+## 九、五種階段的 Chains 介紹
 - INPUT：經網卡進入的封包  
 - OUTPUT：經網卡出去的封包  
 - FORWARD：經網卡進入 / 出去轉送的封包 (proxy 類型)  
@@ -143,7 +143,7 @@ iptables 主要分為三個部分：
 
 > FORWARD 處理的封包會繞過 INPUT 和 OUTPUT，因為處理路徑不同  
 
-## iptables 處理流程
+## 十、iptables 處理流程
 ![](/assets/images/2022-03-09-Linux-iptables-7/2.jpg)
 
 1、當封包進入網卡後，會先進入 PREROUTING，然後根據目的地址進行路由決策，如果目的地址是本機，就會走 INPUT，不是本機則走 FORWARD，然後再走 POSTROUTING 轉出去。  
@@ -152,21 +152,21 @@ iptables 主要分為三個部分：
 
 3、過程中，當封包每經過一個 chain，都要按照 chain 的 rule 順序來走，只要遇到一個 match 的 rule 就要按照這個 rule 進行處理，而後面的 rule 對這個封包資料就不再起作用。  
 
-## iptables 指令
+## 十一、iptables 指令
 用 iptables 指令新增的規則會立即生效，不用重新啟動服務  
 
-### iptables備份
+### (1) iptables備份
 ```bash
 $ iptables-save > /your-path/iptables-backup.bak
 ```
 
-### iptables還原
+### (2) iptables還原
 ```bash
 # 鳥哥建議使用 iptables-save 這個指令來觀察防火牆規則，因為 iptables-save 會列出完整的防火牆規則，只是並沒有規格化輸出而已
 $ iptables-restore < /your-path/iptables-backup.bak
 ```
 
-### 列出預設 filter 表格的三個鏈的規則
+### (3) 列出預設 filter 表格的三個鏈的規則
 ```bash
 $ iptables -L -n
 
@@ -192,47 +192,47 @@ source ：代表此規則是針對哪個『來源 IP』進行限制
 destination ：代表此規則是針對哪個『目標 IP』進行限制  
 
 
-### 顯示 iptables 版本
+### (4) 顯示 iptables 版本
 ```bash
 $ iptables -V
 ```
 
-### 刪除所有的規則
+### (5) 刪除所有的規則
 ```bash
 $ iptables -F
 ```
 
-### 刪除指定的 chain
+### (6) 刪除指定的 chain
 ```bash
 $ iptables -X
 ```
 
-### 將 iptables 計數器歸零
+### (7) 將 iptables 計數器歸零
 ```bash
 $ iptables -Z
 ```
 
-### 新增規則 (放在所有規則的最後面)
+### (8) 新增規則 (放在所有規則的最後面)
 ```bash
 $ iptables -A
 ```
 
-### 新增規則 (放在指定規則的上一行，沒有指定就放第一行)
+### (9) 新增規則 (放在指定規則的上一行，沒有指定就放第一行)
 ```bash
 $ iptables -I
 ```
 
-### 刪除某條規則 (指定行數)
+### (10) 刪除某條規則 (指定行數)
 ```bash
 $ iptables -D INPUT 1
 ```
 
-### 查看指令行數
+### (11) 查看指令行數
 ```bash
 $ iptables --line-numbers -L INPUT
 ```
 
-### 定義 chain 的預設過濾政策
+### (12) 定義 chain 的預設過濾政策
 ```bash
 # 設定預訂政策 INPUT 為丟棄
 $ iptables -P INPUT DROP
@@ -242,14 +242,14 @@ $ iptables -P OUTPUT ACCEPT
 $ iptables -P FORWARD ACCEPT
 ```
 
-## iptables 那些比較長的指令
-### 允許來自 lo 介面的封包
+## 十二、iptables 那些比較長的指令
+### (1) 允許來自 lo 介面的封包
 ```bash
 # 不論封包來自何處或去到哪裡，只要是來自 lo (loopback) 這個介面，就予以接受
 $ iptables -A INPUT -i lo -j ACCEPT
 ```
 
-### 接受由本機發出的回應封包
+### (2) 接受由本機發出的回應封包
 ```bash
 $ iptables -A INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
 # 參數說明：
@@ -257,19 +257,19 @@ $ iptables -A INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
 # --state ：一些封包的狀態，主要有：INVALID  (無效)、ESTABLISHED (連線成功)、NEW (新建立連線)、RELATED (最常用，主機發送出去的封包)
 ```
 
-### 讓 icmp 封包變成可接受的封包類型
+### (3) 讓 icmp 封包變成可接受的封包類型
 ```bash
 $ iptables -A INPUT -p icmp -m icmp --icmp-type 8 -j ACCEPT
 ```
 
-### 開啟 22/80/443 port
+### (4) 開啟 22/80/443 port
 ```bash
 $ iptables -A INPUT -p tcp --dport 22 -j ACCEPT
 $ iptables -A INPUT -p tcp --dport 80 -j ACCEPT
 $ iptables -A INPUT -p tcp --dport 443 -j ACCEPT
 ```
 
-### 阻擋來自特定 IP 或 port 號的封包
+### (5) 阻擋來自特定 IP 或 port 號的封包
 ```bash
 # 阻擋來自 192.168.1.0/24 的 1024:65535 埠口的封包，且想要連線到本機的 ssh port
 $ iptables -A INPUT -i eth0 -p tcp -s 192.168.1.0/24  --sport 1024:65534 --dport ssh -j DROP

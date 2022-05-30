@@ -12,7 +12,7 @@ categories:
 | ----- |  
 | Centos 7.6 | 
 
-## 為什麼要關機或重啟服務？
+## 一、為什麼要關機或重啟服務？
 
 Linux 伺服器的系統與軟體更新是定期需要做的工作，  
 某些重要的系統套件在更新完之後，可能會需要重新啟動對應的服務，  
@@ -20,19 +20,19 @@ Linux 伺服器的系統與軟體更新是定期需要做的工作，
 
 而如何判斷哪些服務要重新啟動，以及何時需要重新開機，就是更新後常會遇到的小問題。  
 
-## 介紹 needs-restarting 工具
+## 二、介紹 needs-restarting 工具
 needs-restarting 是一個 yum-utils 套件中的一個小工具，  
 它可以快速檢查目前的系統狀態，列出需要重新啟動的服務，
 並且檢查 Linux 核心的版本，判斷是否需要重新開機。  
 
-## 安裝 needs-restarting 工具  
-### 安裝 yum-utils 套件  
+## 三、安裝 needs-restarting 工具  
+### (1) 安裝 yum-utils 套件  
 ```bash
 # 使用前先用 yum 安裝 yum-utils 套件  
 $ yum install yum-utils -y
 ```
 
-## 檢查作業系統是否需要重新啟動  
+## 四、檢查作業系統是否需要重新啟動  
 ```bash
 # 搭配 -r 參數可以檢查 Linux 核心版本  
 $ needs-restarting -r
@@ -47,7 +47,7 @@ $ needs-restarting -r ; echo $?
 ```
 如果是 0 就代表不需要重新開機，而若是 1 則代表需要重新開機
 
-### 重開機指令
+### (1) 重開機指令
 ```bash
 # 立即重新開機
 $ reboot
@@ -56,7 +56,7 @@ $ reboot
 $ shutdown -r 21:30 & 
 ```
 
-## 檢查服務是否需要重新啟動
+## 五、檢查服務是否需要重新啟動
 ```bash
 # 搭配 -s 參數可以列出需要重新啟動的系統服務
 $ needs-restarting -s
@@ -70,7 +70,7 @@ $ needs-restarting -s
 $ systemctl restart sshd
 ```
 
-## 顯示由當前 UID 建立起的程序
+## 六、顯示由當前 UID 建立起的程序
 ```bash
 $ needs-restarting -r
 ```

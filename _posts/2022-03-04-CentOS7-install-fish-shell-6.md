@@ -16,15 +16,13 @@ categories:
 | fish, version 2.7.1 | 
 | git version 2.31.1 | 
 
-## Fish Shell 介紹
+## 一、Fish Shell 介紹
 Fish Shell 是個互動式 Shell，可以讓指令介面 (CLI, Command Line Interface) 變得更好看，又有指令自動補全功能的一個工具，非常方便。
 
-## oh-my-fish 介紹
+## 二、oh-my-fish 介紹
 oh-my-fish 是 Fish Shell 的框架，允許安裝擴充套件或是更改 Fish Shell 的主題，簡單使用又快速。
 
-## 開始！
-
-### 檢查 Git 版本
+## 三、檢查 Git 版本
 
 ```bash
 # 查看原本的 git 版本，如果低於 1.9.5 就得升級
@@ -36,26 +34,26 @@ $ yum install git
 $ git --version
 ```
 
-### 安裝 Fish Shell
+## 四、安裝 Fish Shell
 ```bash
 $ cd /etc/yum.repos.d/
 $ wget https://download.opensuse.org/repositories/shells:/fish:/release:/2/CentOS_7/shells:fish:release:2.repo
 $ yum install fish
 ```
 
-### 安裝 oh-my-fish
+## 五、安裝 oh-my-fish
 
 ```bash
 $ curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install | fish
 ```
 
-### 進入 Fish Shell 後使用 oh-my-fish
+## 六、進入 Fish Shell 後使用 oh-my-fish
 ```bash
 $ fish
 $ omf
 ```
 
-### 暫定先用 agnoster 這個主題
+## 七、暫定先用 agnoster 這個主題
 ```bash
 # 下載 agnoster 主題
 $ omf install agnoster
@@ -63,7 +61,7 @@ $ omf install agnoster
 $ omf theme agnoster
 ```
 
-### 更改主題顏色
+## 八、更改主題顏色
 ```bash
 $ vim /root/.local/share/omf/themes/agnoster/functions/fish_prompt.fish
 ```
