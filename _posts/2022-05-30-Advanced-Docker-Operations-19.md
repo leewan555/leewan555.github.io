@@ -105,12 +105,12 @@ $ docker run --rm -v C:\downloads:/home/test ubuntu /bin/ls -l /home/test
 
 ## 七、讓 Container 掛掉後自動重新啟動，或開機後自動啟動
 {% raw %}
-docker run 可以使用 --restart 來決定要不要嘗試自動重新啟動 Container。  
+docker run 可以使用 \--restart 來決定要不要嘗試自動重新啟動 Container。  
 
---restart 選項：no、always、unless-stopped、on-failure  
+\--restart 選項：no、always、unless-stopped、on-failure  
 
 - no：預設值，不自動重新啟動。
-- always：（exit code 必須是正常值=0）可以達到電腦開機就自動啟動 Container 的效果，因為這個 Container 會跟 Docker 本身的 Daemon 綁在一起，所以 Docker 只要一啟動，有 --restart=always 的 Container 就會跟著啟動。  
+- always：（exit code 必須是正常值=0）可以達到電腦開機就自動啟動 Container 的效果，因為這個 Container 會跟 Docker 本身的 Daemon 綁在一起，所以 Docker 只要一啟動，有 \--restart=always 的 Container 就會跟著啟動。  
 - unless-stopped：（exit code 必須是正常值=0）Container 會自動啟動，但是不會在電腦開機時自動啟動。  
 - on-failure：exit code 不等於 0 時自動啟動，因為若 exit code 不等於 0 代表可能是錯誤造成的退出或結束，通常會指定自動重啟的次數，以防造成無窮啟動迴圈。  
 
