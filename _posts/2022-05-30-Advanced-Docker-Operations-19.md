@@ -151,12 +151,13 @@ $ docker run -p 127.0.0.1:80:80 -d nginx
 
 ```bash
 # 建立 Docker 網路
-$ docker network create < Docker 網路名稱>
+$ docker network create <Docker 網路名稱>
 
 # 啟動 Container 並加入網路
 $ docker run --name=<Contianer 名稱> --net=<網路名稱>
 ```
-很多時候都會需要運行兩個以上的軟體，例如使用部落格軟體，就會同時用到網頁伺服器和資料庫系統
+很多時候都會需要運行兩個以上的軟體，例如使用部落格軟體，就會同時用到網頁伺服器和資料庫系統。  
+
 在虛擬機時，會把網站伺服器跟資料庫系統這兩套都安裝同一個虛擬機上。  
 
 但在 Container 上，就不建議這樣的作法，比較建議用 docker network 建立一個 Docker 網路，然後再把這兩套軟體分別啟動為獨立的 Container，同時在 docker run 的時候，利用 --net 選項將這兩個 Container 加到同一個 Docker 網路之中。
