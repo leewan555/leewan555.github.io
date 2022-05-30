@@ -181,7 +181,7 @@ root@e8b718be1d25:/# ping nginx-b
 $ docker network inspect <Docker 網路名稱>
 
 # 刪除 Docker 網路
-$ docker network rm < Docker 網路名稱>
+$ docker network rm <Docker 網路名稱>
 ```
 ![](/assets/images/2022-05-30-Advanced-Docker-Operations-19/8.JPG) 
 
