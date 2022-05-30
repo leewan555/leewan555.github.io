@@ -185,7 +185,7 @@ $ docker network rm <Docker 網路名稱>
 ```
 ![](/assets/images/2022-05-30-Advanced-Docker-Operations-19/8.JPG) 
 
-Docker 網路被移除後，所以已加入該 Docker 網路的 Container 都會無法再被啟動，因為它們會找不到需要的 Docker 網路可用。  
+Docker 網路被移除後，所有已加入該 Docker 網路的 Container 都會無法再被啟動，因為它們會找不到需要的 Docker 網路可用。  
 
 如果需要再次啟動那些 Container，只能建立一個相同名稱的 Docker 網路。  
 
