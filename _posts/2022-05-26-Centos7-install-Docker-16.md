@@ -11,7 +11,7 @@ categories:
 | 系統與使用工具 | 
 | ----- |  
 | Centos 7.6 | 
-| Docker | 
+| Docker 1.13.1 | 
 
 
 ## 一、Docker 介紹

@@ -11,7 +11,7 @@ categories:
 | 系統與使用工具 | 
 | ----- |  
 | Centos 7.6 | 
-| Docker | 
+| Docker 1.13.1 | 
 
 ## 一、找到要用的硬像（Image）檔
 ### (1) 尋找某個 Docker Image
@@ -115,6 +115,7 @@ $ docker remove b87e
 Docker Image 會吃掉一部分的碟空間，所以沒用到的可以刪一刪，  
 且 Docker Image 是一層一層疊出來的，不同的 Docker Images 可能有共用到同一個層的部分，    
 所以移除掉某個 Docker Image 後所拿回的硬碟空間不一定會跟所想的一樣。  
+
 這也是為什麼不論下載或移除 Docker Image 的時候，都會看到是很多檔案在下載或刪除的緣故。  
 ```bash
 $ docker rmi <Image 名稱或 ID>
