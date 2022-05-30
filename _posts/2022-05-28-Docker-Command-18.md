@@ -69,7 +69,6 @@ STATUS: 顯示 Container 已經啟動多久了。
 ![](/assets/images/2022-05-28-Docker-Command-18/5.JPG)
 
 ## 五、啟動和停止和重新啟動 Container 
-
 ### (1) 啟動 Container  
 ```bash
 $ docker start <Container ID>
