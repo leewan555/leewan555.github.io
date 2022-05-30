@@ -60,7 +60,7 @@ docker run 在執行之後就會立刻運行
 ![](/assets/images/2022-05-30-Advanced-Docker-Operations-19/3.JPG)  
 
 ## 四、外掛 Container 的儲存空間，把資料存下來
-除了 docker rm container 後會將 Container 的資料刪除以外，如果使用資料庫的 Container，資料庫檔案位置會是在 Container 內部，當不斷把資料寫進資料庫，用 docker ps -a 就會發現 Container 佔用的空間會不斷的長大。  
+如果使用資料庫的 Container，資料庫檔案位置會是在 Container 內部，當不斷把資料寫進資料庫，用 docker ps -a 就會發現 Container 佔用的空間會不斷的長大。  
 
 Docker Container 的檔案系統是用疊層（Layer）的方式儲存，會比常見的檔案儲存更耗用空間（用一種層疊的方式來新增資料，每次新增資料，就會產生一層新資料層來疊在原來所使用的 Docker Image 上）。  
 
