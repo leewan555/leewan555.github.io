@@ -48,8 +48,9 @@ $ docker exec -it mysql mysql -p
 ![](/assets/images/2022-05-30-Advanced-Docker-Operations-19/2.JPG)  
 
 ## 三、docker run v.s. docker create?
-docker create 要建立一個新的 Container，需搭配 docker start 指令才會啟動
-docker run 在執行之後就會立刻運行
+`docker create` 要建立一個新的 Container，需搭配 `docker start` 指令才會啟動，  
+
+`docker run` 在執行之後就會立刻運行。  
 
 `docker run --name nginx-run -p 8080:80 -d nginx`
 -> 下指令後，Container 的狀態會是 `UP`
@@ -60,7 +61,7 @@ docker run 在執行之後就會立刻運行
 ![](/assets/images/2022-05-30-Advanced-Docker-Operations-19/3.JPG)  
 
 ## 四、外掛 Container 的儲存空間，把資料存下來
-如果使用資料庫的 Container，資料庫檔案位置會是在 Container 內部，當不斷把資料寫進資料庫，用 docker ps -a 就會發現 Container 佔用的空間會不斷的長大。  
+如果使用資料庫的 Container，資料庫檔案位置會是在 Container 內部，當不斷把資料寫進資料庫，用 `docker ps -a` 就會發現 Container 佔用的空間會不斷的長大。  
 
 Docker Container 的檔案系統是用疊層（Layer）的方式儲存，會比常見的檔案儲存更耗用空間（用一種層疊的方式來新增資料，每次新增資料，就會產生一層新資料層來疊在原來所使用的 Docker Image 上）。  
 
@@ -105,14 +106,14 @@ $ docker run --rm -v C:\downloads:/home/test ubuntu /bin/ls -l /home/test
 
 ## 七、讓 Container 掛掉後自動重新啟動，或開機後自動啟動
 {% raw %}
-docker run 可以使用 \--restart 來決定要不要嘗試自動重新啟動 Container。  
+`docker run` 可以使用 `--restart` 來決定要不要嘗試自動重新啟動 Container。  
 
-\--restart 選項：no、always、unless-stopped、on-failure  
+`--restart` 選項：no、always、unless-stopped、on-failure  
 
-- no：預設值，不自動重新啟動。
-- always：（exit code 必須是正常值=0）可以達到電腦開機就自動啟動 Container 的效果，因為這個 Container 會跟 Docker 本身的 Daemon 綁在一起，所以 Docker 只要一啟動，有 \--restart=always 的 Container 就會跟著啟動。  
-- unless-stopped：（exit code 必須是正常值=0）Container 會自動啟動，但是不會在電腦開機時自動啟動。  
-- on-failure：exit code 不等於 0 時自動啟動，因為若 exit code 不等於 0 代表可能是錯誤造成的退出或結束，通常會指定自動重啟的次數，以防造成無窮啟動迴圈。  
+- `no`：預設值，不自動重新啟動。
+- `always`：（exit code 必須是正常值=0）可以達到電腦開機就自動啟動 Container 的效果，因為這個 Container 會跟 Docker 本身的 Daemon 綁在一起，所以 Docker 只要一啟動，有 \--restart=always 的 Container 就會跟著啟動。  
+- `unless-stopped`：（exit code 必須是正常值=0）Container 會自動啟動，但是不會在電腦開機時自動啟動。  
+- `on-failure`：exit code 不等於 0 時自動啟動，因為若 exit code 不等於 0 代表可能是錯誤造成的退出或結束，通常會指定自動重啟的次數，以防造成無窮啟動迴圈。  
 
 ```bash
 $docker run --restart=always nginx
@@ -122,7 +123,7 @@ $docker run --restart=on-failure:5 nginx
 {% endraw %}
 
 ## 八、進入 Container 操作命令列
->> docker run -it \--name nginx-cmd nginx /bin/bash -> 用 docker run 也可以。
+>> 用 `docker run` 也可以 -> `docker run -it --name nginx-cmd nginx /bin/bash`
 
 ```bash
 # -t：把 Container 開在"互動模式"
@@ -147,7 +148,7 @@ $ docker run -p 192.168.1.1:80:80 -d nginx
 $ docker run -p 127.0.0.1:80:80 -d nginx
 ```
 ## 十、建立多個 Container 專用的 Docker 網路
->> 除了 docker network 之外，docker run 有個 \--link 選項也可以把兩個 Container 串接在一起，不過限制多，官方也不建議繼續使用 Docker link 的功能，還是建議用 Docker 網路，不然就是用 Docker Compose 來達到。
+>> 除了 `docker network` 之外，`docker run` 有個 `--link` 選項也可以把兩個 Container 串接在一起，不過限制多，官方也不建議繼續使用 Docker link 的功能，還是建議用 Docker 網路，不然就是用 Docker Compose 來達到。
 
 ```bash
 # 建立 Docker 網路
@@ -160,7 +161,7 @@ $ docker run --name=<Contianer 名稱> --net=<網路名稱>
 
 在虛擬機時，會把網站伺服器跟資料庫系統這兩套都安裝同一個虛擬機上。  
 
-但在 Container 上，就不建議這樣的作法，比較建議用 docker network 建立一個 Docker 網路，然後再把這兩套軟體分別啟動為獨立的 Container，同時在 docker run 的時候，利用 \--net 選項將這兩個 Container 加到同一個 Docker 網路之中。
+但在 Container 上，就不建議這樣的作法，比較建議用 `docker network` 建立一個 Docker 網路，然後再把這兩套軟體分別啟動為獨立的 Container，同時在 `docker run` 的時候，利用 `--net` 選項將這兩個 Container 加到同一個 Docker 網路之中。
 ```bash
 # 建立 nginx-a 和 nginx-b 兩個 Container 然後加入到 nginx-net 的 Docker 網路，然後 nginx-a 用 ping 指令加上 nginx-b 的 Container 名稱就可以 ping 到 nignx-b，而不用知道 nginx-b 的 IP
 $ docker network create  nignx-net
@@ -189,13 +190,15 @@ Docker 網路被移除後，所有已加入該 Docker 網路的 Container 都會
 
 如果需要再次啟動那些 Container，只能建立一個相同名稱的 Docker 網路。  
 
-## 十二、docker kill v.s. docker stop?
-建議使用 docker stop 來關閉 Container。  
+## 十二、docker stop v.s. docker kill?
+建議使用 `docker stop` 來關閉 Container。  
 
-docker stop 會讓 Container 進入標準的關機程序，也就是說會讓 Container 收到要關機的訊號，並通知各個程序進入各自的關機處理程序（像是資料同步或更新到檔案等工作）。
+`docker stop` 會讓 Container 進入標準的關機程序，也就是說會讓 Container 收到要關機的訊號，並通知各個程序進入各自的關機處理程序（像是資料同步或更新到檔案等工作）。
 
-docker kill 是當遇到使用 docker stop 關閉不了，需要強制關閉的狀況時來使用。  
+`docker kill` 是當遇到使用 `docker stop` 關閉不了，需要強制關閉的狀況時來使用。  
 ```bash
+$ docker stop <Container 名稱或 ID>
+
 $ docker kill <Container 名稱或 ID>
 ```
 
@@ -204,9 +207,9 @@ $ docker kill <Container 名稱或 ID>
 
 更新過程中會有 Container 停止和重新啟動的需要，所以在更新之前要先規劃及準備好所需資料。 
 
-有些事項要特別注意，才可以做到只下載新板 docker image 和用 docker run 重新啟動 Container 就可以完成更新的做法：  
+有些事項要特別注意，才可以做到只下載新版 `docker image` 和用 `docker run` 重新啟動 Container 就可以完成更新的做法：  
 (1) 不要在 Container 內儲存任何資料和設定  
-(2) 要記下啟動 Container 時所使用的 docker run 指令和選項及參數  
+(2) 要記下啟動 Container 時所使用的 `docker run` 指令和選項及參數  
 ```bash
 # 檢視或備份運行中的 Container 資訊
 $ docker inspect <Container 名稱或 ID>
@@ -224,16 +227,18 @@ docker rm <Container 名稱或 ID>
 docker run <原來的選項與參數>
 ```
 ## 十四、建立專用 Data Volume 儲存資料
->> 除了用 docker run -v 和 docker volume 來建立 Data volume，也可以使用 docker-compose 指令搭配 docker-compose.yml 檔案新增 Data volume。
+>> 除了用 `docker run -v` 和 `docker volume` 來建立 Data volume，也可以使用 docker-compose 指令搭配 docker-compose.yml 檔案新增 Data volume。
 
-用 docker run -v 可以直接從主機存取 Container 的檔案，但是容易發生權限的問題，無法順利存取。  
+用 `docker run -v` 可以直接從主機存取 Container 的檔案，但是容易發生權限的問題，無法順利存取。  
 另一個方法是可以透過建立 Docker Data volume 永久性存放 Container 的資料，還可以"共用"或"回收"。  
 
 
 ### (1) docker run -v 自動建立的 Data volume
 沒有指定外部資料夾的路徑，而是直接指定該 Container 的 /usr/share/nginx/html 資料夾要掛載外部的 Data volume。  
 
-docker run 會在啟動 Container 時，立即建立一組 Data volume，並掛載此 Data volume 至 Container 的 /usr/share/nginx/html 資料夾路徑上，同時，還會自動把該資料夾內的檔案複製到此新建的 Data Volume 裡。  
+`docker run` 會在啟動 Container 時，立即建立一組 Data volume，並掛載此 Data volume 至 Container 的 /usr/share/nginx/html 資料夾路徑上，同時，還會自動把該資料夾內的檔案複製到此新建的 Data Volume 裡。  
+
+用這方式建立的 Data volume 名稱是隨機的，不過可以使用 `docker inspect <Container 名稱或 ID>` 來查詢。  
 ```bash
 $ docker run -v /usr/share/nginx/html --name=nginx-vol -p 8080:80 -d nginx
 ```
@@ -244,13 +249,13 @@ $ docker run -v /usr/share/nginx/html --name=nginx-vol -p 8080:80 -d nginx
 $ docker volume ls 
 
 # 使用 docker inspect 找出自動建立的 Data volume 的名稱（用 docker run -v 建立的 Data volume 無法命名）
-$ docker inspect -f '{{json .Mounts}}' nginx-vol
+$ docker inspect --format='{{json .Mounts}}' nginx-vol
 ```
 {% endraw %}
 
 ![](/assets/images/2022-05-30-Advanced-Docker-Operations-19/9.JPG)  
-Name: 新建的 Data Volume 名稱。  
-Source: Data volume 在主機的實際位址和路徑。  
+`Name`: 新建的 Data Volume 名稱。  
+`Source`: Data volume 在主機的實際位址和路徑。  
 
 ### (2) docker volume create 建立的 Data volume
 ```bash
