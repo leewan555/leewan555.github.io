@@ -202,7 +202,7 @@ $ docker kill <Container 名稱或 ID>
 ## 十三、當運行中的軟體推出新版本時，如何升級？
 更新的方式就是下載最新版的 Docker Image，然後再重新啟動新的 Container 就好。  
 
-更新過程中會有 Container 停止和重新啟動的需要，所以在更新之前要先規畫及準備好所需資料。 
+更新過程中會有 Container 停止和重新啟動的需要，所以在更新之前要先規劃及準備好所需資料。 
 
 有些事項要特別注意，才可以做到只下載新板 docker image 和用 docker run 重新啟動 Container 就可以完成更新的做法：  
 (1) 不要在 Container 內儲存任何資料和設定  
