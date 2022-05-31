@@ -26,26 +26,25 @@ Homebrew 是軟體套件管理系統，支援 MacOS 和 Linux，非常好用，�
 ```bash
 # MacOS Install Homebrew
 $ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
 # 若已經安裝過 Homebrew 則需要更新
 $ brew update
 ```
 ### (2) Install Ruby
-```bash
-# 請先不要用這個！
-$ brew install ruby
-```
-這個指令會安裝到最新版 ruby3  
-但測試好幾次使用 ruby3 的話，啟動 jekyll 會有錯誤  
+若使用 `brew install ruby` 安裝 ruby 會安裝到最新版 ruby 3  
+但測試好幾次使用 ruby 3 的話，啟動 jekyll 會有錯誤  
 所以我用另外的方式安裝 ruby 2.7.5  
 
 ```bash
 $ curl -fsSL https://github.com/rbenv/rbenv-installer/raw/HEAD/bin/rbenv-installer | bash
+
 # 因為我是使用 oh-my-zsh，若是使用 bash/dash 要將 ~/.zshrc 改成 ~/.bashrc
 $ echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.zshrc  
 $ echo 'eval "$(rbenv init -)"' >> ~/.zshrc
 $ source ~/.zshrc
 $ exec $SHELL
 $ rbenv install -l
+
 # ruby 版本我選 2.7.5
 $ rbenv install [ruby-version] 
 $ rbenv global [ruby-version] 
@@ -61,6 +60,7 @@ $ gem -v
 ```bash
 $ gem update
 $ gem install jekyll bundler
+
 # 安裝成功後，查看 jekyll 和 bundle 的版本
 $ jekyll -v
 $ bundle -v
@@ -70,6 +70,7 @@ $ bundle -v
 也可以去下載其他主題，現在先以 minimal-mistakes 作為示範
 ```bash
 $ git clone https://github.com/mmistakes/minimal-mistakes.git
+
 # 進入資料夾
 $ cd minimal-mistakes
 $ bundle install
