@@ -123,7 +123,8 @@ $docker run --restart=on-failure:5 nginx
 {% endraw %}
 
 ## 八、進入 Container 操作命令列
->> 用 `docker run` 也可以 -> `docker run -it --name nginx-cmd nginx /bin/bash`
+> 用 `docker run` 也可以 -> `docker run -it --name nginx-cmd nginx /bin/bash`
+{: .prompt-info }
 
 ```bash
 # -t：把 Container 開在"互動模式"
@@ -148,7 +149,8 @@ $ docker run -p 192.168.1.1:80:80 -d nginx
 $ docker run -p 127.0.0.1:80:80 -d nginx
 ```
 ## 十、建立多個 Container 專用的 Docker 網路
->> 除了 `docker network` 之外，`docker run` 有個 `--link` 選項也可以把兩個 Container 串接在一起，不過限制多，官方也不建議繼續使用 Docker link 的功能，還是建議用 Docker 網路，不然就是用 Docker Compose 來達到。
+> 除了 `docker network` 之外，`docker run` 有個 `--link` 選項也可以把兩個 Container 串接在一起，不過限制多，官方也不建議繼續使用 Docker link 的功能，還是建議用 Docker 網路，不然就是用 Docker Compose 來達到。
+{: .prompt-info }
 
 ```bash
 # 建立 Docker 網路
@@ -227,7 +229,8 @@ docker rm <Container 名稱或 ID>
 docker run <原來的選項與參數>
 ```
 ## 十四、建立專用 Data Volume 儲存資料
->> 除了用 `docker run -v` 和 `docker volume` 來建立 Data volume，也可以使用 docker-compose 指令搭配 docker-compose.yml 檔案新增 Data volume。
+> 除了用 `docker run -v` 和 `docker volume` 來建立 Data volume，也可以使用 docker-compose 指令搭配 docker-compose.yml 檔案新增 Data volume。
+{: .prompt-info }
 
 用 `docker run -v` 可以直接從主機存取 Container 的檔案，但是容易發生權限的問題，無法順利存取。  
 另一個方法是可以透過建立 Docker Data volume 永久性存放 Container 的資料，還可以"共用"或"回收"。  
