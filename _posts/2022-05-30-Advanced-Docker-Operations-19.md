@@ -56,7 +56,7 @@ $ docker exec -it mysql mysql -p
 -> 下指令後，Container 的狀態會是 `UP`
 
 `docker create --name nginx-create -p 8081:80 nginx`
--> 下指令後，Container 的狀態會是 `Create`
+-> 下指令後，Container 的狀態會是 `Created`
 
 ![](/assets/images/2022-05-30-Advanced-Docker-Operations-19/3.JPG)  
 
