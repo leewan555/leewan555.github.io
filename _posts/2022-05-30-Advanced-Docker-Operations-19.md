@@ -217,7 +217,7 @@ $ docker kill <Container 名稱或 ID>
 $ docker inspect <Container 名稱或 ID>
 
 # 取回最新版的 Docker Image
-$ docker pull <Container 名稱或 ID>
+$ docker pull <Image 名稱或 ID>
 
 # 停止運行中的 Container
 docker stop <Container 名稱或 ID>
