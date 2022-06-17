@@ -1,5 +1,6 @@
 ---
 title:  "找出那些趁人之危的 rootkit－交給專業的 rkhunter！"
+slug: what-is-rootkit-and-Centos7-use-rkhunter-11
 date:   2022-03-23
 excerpt: 很會藏嘛！
 categories:

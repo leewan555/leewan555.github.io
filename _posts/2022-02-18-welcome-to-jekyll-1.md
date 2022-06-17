@@ -1,5 +1,6 @@
 ---
 title:  "Welcome to Fred's Blog!"
+slug: welcome-to-jekyll-1
 date:   2022-02-18
 excerpt: 這是我的第一篇文章！
 categories:

@@ -1,5 +1,6 @@
 ---
 title:  "守衛家門大作戰！－Centos7 安裝 DenyHosts 教學"
+slug: Centos7-use-Denyhosts-9
 date:   2022-03-15
 excerpt: 到處 try 帳密是吃飽太閒喔。
 categories:

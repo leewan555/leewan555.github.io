@@ -1,5 +1,6 @@
 ---
 title:  "使用 Fish Shell 讓你的 Linux CLI 比別人更炫炮！"
+slug: CentOS7-install-fish-shell-6
 date:   2022-03-04
 excerpt: 而且也方便多了。
 categories:

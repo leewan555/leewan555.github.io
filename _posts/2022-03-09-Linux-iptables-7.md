@@ -1,5 +1,6 @@
 ---
 title:  "Linux 的風紀委員！－認識 iptables 及常用指令介紹"
+slug: Linux-iptables-7
 date:   2022-03-09
 excerpt: iptables 很厲害內。
 categories:

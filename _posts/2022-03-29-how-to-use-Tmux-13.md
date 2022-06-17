@@ -1,5 +1,6 @@
 ---
 title:  "Tmux－視窗分割的好幫手"
+slug: how-to-use-Tmux-13
 date:   2022-03-29
 excerpt: 但是每次都搞混指令。
 categories:

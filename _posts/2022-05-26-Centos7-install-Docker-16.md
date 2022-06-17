@@ -1,5 +1,6 @@
 ---
 title:  "CentOS 7 安裝 Docker"
+slug: Centos7-install-Docker-16
 date:   2022-05-26
 excerpt: 英文小教室：Docker 的英文是碼頭。
 categories:

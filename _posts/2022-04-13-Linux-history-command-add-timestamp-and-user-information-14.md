@@ -1,5 +1,6 @@
 ---
 title:  "將 History 指令加上時間戳及使用者資訊"
+slug: Linux-history-command-add-timestamp-and-user-information-14
 date:   2022-04-13
 excerpt: 必要時很方便！
 categories:

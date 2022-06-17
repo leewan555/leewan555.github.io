@@ -1,5 +1,6 @@
 ---
 title:  "有關 Review 這個分類項目"
+slug: the-first-post-in-review-5
 date:   2022-02-25
 excerpt: 得多看書才行。
 categories:

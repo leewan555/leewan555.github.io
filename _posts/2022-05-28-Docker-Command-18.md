@@ -1,5 +1,6 @@
 ---
 title:  "Docker 基本指令"
+slug: Docker-Command-18
 date:   2022-05-28
 excerpt: 都是些手指頭放在鍵盤上就會自己出來的實用指令。
 categories:
