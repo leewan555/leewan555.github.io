@@ -14,12 +14,6 @@ categories:
 | Centos 7.6 | 
 | Docker 1.13.1 | 
 
-{% raw %}
-
-```bash
-
-```
-{% endraw %}
 
 ## 一、從運行中的 Container 產生映像檔
 > 注意事項：  
