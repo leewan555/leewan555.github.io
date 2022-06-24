@@ -79,7 +79,7 @@ FROM debain:jessie
 在 Container 裡設定指定 Nginx 的 `NGINX_VERSION` 環境變數。  
 
 之後執行 `apt-get install` 安裝指令時，會需要這個 `ENV` 所設定的變數，  
-同常會把經常變動的參數設成環境變數，以便後續維護或更新時，可以不用直接修改相關的指令。  
+通常會把經常變動的參數設成環境變數，以便後續維護或更新時，可以不用直接修改相關的指令。  
 ```bash
 ENV NGINX_VERSION 1.11.10-1~jessie
 ```
@@ -106,17 +106,18 @@ RUN apt-key adv --keyserver ........
 > 注意！每個 Dockerfile 只能有一個 `CMD` 指令會有作用，若同一個 Dockfile 裡有多個 `CMD` 指令，只有 **最後一個** `CMD` 指令會有作用。  
 {: .prompt-warning }
 
-(1)（官方建議寫法）可用在 Dockfile 裡，但不會使用預設的 Shell 執行，不能使用 Shell 所提供的功能，像是取用環境變數或用 Shell 內建的指令
+(1)（官方建議寫法）  
+可用在 Dockfile 裡，但不會使用預設的 Shell 執行，不能使用 Shell 所提供的功能，像是取用環境變數或用 Shell 內建的指令。   
 ```bash
 CMD ["<要執行的程式>","<要執行的程式用到的第一組選項>","<要執行的程式用到的第二組選項或第一組選的參數值>"]
 ```
 
-(2) 可用在 Dockfile 裡，會使用預設的 Shell 執行
+(2) 可用在 Dockfile 裡，會使用預設的 Shell 執行。 
 ```bash
 CMD <要執行的程式> <要執行的程式用到的第一組選項> <要執行的程式用到的第二組選項或第一組選的參數值>
 ```
 
-(3) 搭配 `ENTRYPOINT` 指令使用，傳遞指令選項給 `ENTRYPOINT` 指令使用
+(3) 搭配 `ENTRYPOINT` 指令使用，傳遞指令選項給 `ENTRYPOINT` 指令使用。 
 ```bash
 CMD ["<加在 ENTRYPOINT 執行程式的選項一>","<加在 ENTRYPOINT 執行程式的選項二>"]
 ```
@@ -162,7 +163,8 @@ $ docker run -it nginx-entrypoint /bin/bash
 WORKDIR <資料夾完整路徑或相對路徑>
 ```
 
-建立 /home/ayubiz/abc 資料夾後，利用 WORKDIR 切換到 /home/ayubiz 資料夾，然後把 hello.html 檔案複製到 /home/ayubiz 裡，透過 `WORKDIR` 指定相對位置 abc 資烙夾將位置切換進 /home/ayubiz/abc，同時這也是使用 `docekr exec` 進入新啟動的 Container 後的所在位置
+建立 /home/ayubiz/abc 資料夾後，利用 WORKDIR 切換到 /home/ayubiz 資料夾，然後把 hello.html 檔案複製到 /home/ayubiz 裡，透過 `WORKDIR` 指定相對位置 abc 資烙夾將位置切換進 /home/ayubiz/abc，同時這也是使用 `docekr exec` 進入新啟動的 Container 後的所在位置。   
+
 ```bash
 RUN mkdir -p /home/ayubiz/abc
 
