@@ -5,6 +5,8 @@ date: 2022-02-21
 excerpt: 一起來建立自己的部落格！
 categories:
   - GitHub Pages
+tags:
+  - gitHub pages 
 ---
 ## Github Pages 介紹
 GitHub Pages 是 GitHub 提供的一個網頁代管服務，可以讓使用者放靜態網站，做出個人部落格。  

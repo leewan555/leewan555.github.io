@@ -5,6 +5,10 @@ date:   2022-05-30
 excerpt: 都是很值得學習的操作！
 categories:
   - Docker
+tags:
+  - centos
+  - docker
+  - container
 ---
 
 ## 使用的環境

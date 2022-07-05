@@ -5,6 +5,9 @@ date:   2022-03-09
 excerpt: iptables 很厲害內。
 categories:
   - Linux 
+tags:
+  - centos
+  - iptables
 ---
 
 ## 使用的環境

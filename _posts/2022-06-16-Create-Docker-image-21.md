@@ -2,9 +2,13 @@
 title:  "各種自製 Docker Image 的方法"
 slug: create-docker-image-21
 date:   2022-06-16
-excerpt: dockerfile 像在寫腳本耶。
+excerpt: Dockerfile 像在寫腳本耶。
 categories:
   - Docker
+tags:
+  - centos
+  - docker
+  - container
 ---
 
 ## 使用的環境
@@ -15,7 +19,7 @@ categories:
 | Docker 1.13.1 | 
 
 
-## 一、從運行中的 Container 產生映像檔
+## 一、從運行中的 Container 產生 Image 檔
 > 注意事項：  
 > (1) 執行 `docker commit` 時，Container 的狀態是可以停止中的。    
 > (2) 掛載在 Container 的儲存空間不會被存到新產生的 Image 的，需要在 `docker run` 時再用 -v 掛載。  
@@ -40,10 +44,10 @@ $ docker images
 ```
 
 使用 `docker images` 就可以看到剛剛 commit 出來的 image 檔。  
-![](/assets/images/2022-06-16-create-docker-image-21/1.JPG)  
+![](/assets/images/2022-06-16-Create-Docker-image-21/1.JPG)  
 
 再來執行剛剛 commit 出來的 docker-hello-commit，成功！      
-![](/assets/images/2022-06-16-create-docker-image-21/2.JPG)  
+![](/assets/images/2022-06-16-Create-Docker-image-21/2.JPG)  
 
 ## 二、用 Bulid 指令自動化產生新的 Image
 > Dockerfile 的檔案名稱有大小寫的分別。   
@@ -335,7 +339,7 @@ $ docker save nginx > nginx.tar
 ```
 
 ### 2. 匯入
-如果主機上已經有相同的名稱和版本的映像檔存在，可能會顯示已匯入但實際上沒覆蓋。  
+如果主機上已經有相同的名稱和版本的 Image 檔存在，可能會顯示已匯入但實際上沒覆蓋。  
 ```bash
 $ docker load -i <之前匯出的 image 檔.tar>
 

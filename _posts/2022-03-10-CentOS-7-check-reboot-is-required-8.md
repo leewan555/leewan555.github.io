@@ -1,10 +1,13 @@
 ---
-title:  "檢查你的 CentOS 系統或服務是否需要重新啟動"
-slug: centos-check-reboot-is-required-8
+title:  "檢查 CentOS 7 的系統或服務是否需要重新啟動"
+slug: Centos-7-check-reboot-is-required-8
 date:   2022-03-10
 excerpt: 勇者沒在重開的啦(X)
 categories:
   - Linux 
+tags:
+  - centos
+  - system
 ---
 
 ## 使用的環境

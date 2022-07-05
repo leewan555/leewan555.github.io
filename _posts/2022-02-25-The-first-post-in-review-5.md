@@ -1,10 +1,12 @@
 ---
 title:  "有關 Review 這個分類項目"
-slug: the-first-post-in-review-5
+slug: The-first-post-in-review-5
 date:   2022-02-25
 excerpt: 得多看書才行。
 categories:
   - Review
+tags:
+  - review
 ---
 # Review
 之後我打算將閱讀或各種心得放在 Review 這個分類裡。  

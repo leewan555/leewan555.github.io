@@ -5,6 +5,9 @@ date:   2022-03-29
 excerpt: 但是每次都搞混指令。
 categories:
   - Linux 
+tags:
+  - centos
+  - tmux
 ---
 
 ## 使用的環境

@@ -1,10 +1,13 @@
 ---
-title:  "守衛家門大作戰！－Centos7 安裝 DenyHosts 教學"
-slug: Centos7-use-Denyhosts-9
+title:  "守衛家門大作戰！－Centos 7 安裝 DenyHosts 教學"
+slug: Centos-7-use-Denyhosts-9
 date:   2022-03-15
 excerpt: 到處 try 帳密是吃飽太閒喔。
 categories:
   - Linux 
+tags:
+  - centos
+  - denyhosts
 ---
 
 ## 使用的環境
@@ -39,12 +42,12 @@ $ pwd
 $ python setup.py install
 ```
 
-![](/assets/images/2022-03-15-Centos7-use-Denyhosts-9/1.jpg)   
+![](/assets/images/2022-03-15-Centos-7-use-Denyhosts-9/1.jpg)   
 
 
 如果安裝後遇到 `ImportError: No module named ipaddr` 的問題，可以透過安裝 ipaddr 模組來解決。  
 
-![](/assets/images/2022-03-15-Centos7-use-Denyhosts-9/2.jpg)  
+![](/assets/images/2022-03-15-Centos-7-use-Denyhosts-9/2.jpg)  
 
 ```bash
 # 要先安裝 python-pip (已安裝過可跳過此步驟)
@@ -55,7 +58,7 @@ $ pip install ipaddr
 $ python setup.py install
 ```
 
-![](/assets/images/2022-03-15-Centos7-use-Denyhosts-9/3.jpg)
+![](/assets/images/2022-03-15-Centos-7-use-Denyhosts-9/3.jpg)
 
 ## 三、DenyHosts 基本設定
 ### (1) DenyHosts 的設定檔

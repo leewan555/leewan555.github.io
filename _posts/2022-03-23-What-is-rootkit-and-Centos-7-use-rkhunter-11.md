@@ -1,10 +1,14 @@
 ---
 title:  "找出那些趁人之危的 rootkit－交給專業的 rkhunter！"
-slug: what-is-rootkit-and-Centos7-use-rkhunter-11
+slug: What-is-rootkit-and-Centos-7-use-rkhunter-11
 date:   2022-03-23
 excerpt: 很會藏嘛！
 categories:
   - Linux 
+tags:
+  - rootkit
+  - rkhunter
+  - centos
 ---
 
 ## 使用的環境
@@ -133,7 +137,7 @@ rkhunter 在利用 MD5 編碼比對方面，是利用他本身的 MD5 編碼資�
 ## 十、遇到的問題
 ### (1) Warning: The file properties have changed
 
-![](/assets/images/2022-03-23-what-is-rootkit-and-Centos7-use-rkhunter-11/1.jpg) 
+![](/assets/images/2022-03-23-What-is-rootkit-and-Centos-7-use-rkhunter-11/1.jpg) 
 
 ```bash
 Warning: The file properties have changed:

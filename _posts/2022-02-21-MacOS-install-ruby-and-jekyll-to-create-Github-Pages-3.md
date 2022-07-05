@@ -1,10 +1,15 @@
 ---
 title:  "用 GitHub Pages 建立個人部落格吧！(2)－在 MacOS 上安裝 Ruby 與 Jekyll"
-slug: macos-install-ruby-and-jekyll-to-create-Github-Pages-3
+slug: MacOS-install-ruby-and-jekyll-to-create-Github-Pages-3
 date:   2022-02-21
 excerpt: 其實其他 Linux 版本也都適用啦。
 categories:
   - GitHub Pages
+tags:
+  - macos
+  - github pages
+  - ruby
+  - jekyll
 ---
 
 ## 使用的環境
@@ -84,7 +89,7 @@ $ jekyll serve
 $ bundle exec jekyll serve
 ```
 看到 Server running... press ctrl-c to stop... 就表示成功！
-![](/assets/images/2022-02-21-macos-install-ruby-and-jekyll-to-create-Github-Pages-3/1.png)
+![](/assets/images/2022-02-21-Macos-install-ruby-and-jekyll-to-create-Github-Pages-3/1.png)
 
 
 
