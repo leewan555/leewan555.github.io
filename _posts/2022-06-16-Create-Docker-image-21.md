@@ -103,7 +103,6 @@ EXPOSE 80 443
 RUN apt-key adv --keyserver ........
 ```
 
-
 ### 5. CMD
 **用途：Container 啟動完成後要執行的指令。**    
 
@@ -154,7 +153,6 @@ $ docker build -t  nginx-entrypoint .
 $ docker run -it nginx-entrypoint /bin/bash
 發生錯誤！
 ```
-
 
 ### 7. WORKDIR
 **用途：指定執行指令的資料夾位置**  
@@ -255,8 +253,6 @@ USER <已建好的使用者名稱>:<已存在的使用者群組名稱>
 USER <已建好的使用者 UID>:<已存在的使用者群組 UID>
 ```
 
-
-
 ### 13. VOLUME
 **用途：提供在 Image 檔案建立 Data Volume 掛載點的功能。**  
 ```bash
@@ -351,9 +347,10 @@ $ docker load < nginx.tar
 除了使用 `docker commit` 指令產生新的 Image 檔，也利用 `docker export` 匯出 Container，再用 `docker import` 產生新的 Image 檔。
 
 ### 1. 匯出
-不是將運行中的 Container 整個匯出，而只是將 Container 內部使用中的檔案系統匯出
-如果 Container 有掛載 Date Volume，不會被匯出
-匯出的檔案會覆蓋相同路徑下的同名稱檔案 
+不是將運行中的 Container 整個匯出，而只是將 Container 內部使用中的檔案系統匯出，匯出的檔案會覆蓋相同路徑下的同名稱檔案。  
+
+如果 Container 有掛載 Date Volume，則資料卷不會被匯出。
+
 ```bash
 $ docker export -o [匯出的檔案名稱.tar] [Container 名稱或  ID]
 
@@ -363,7 +360,8 @@ $ docker export -o nginx-export.tar nginx-hello
 ```
 
 ### 2. 匯入
-匯入時，不會將匯入的檔案內容轉換成運行或停用的 Container，而是直接匯入成 Image 檔，所以可以利用這種特質，將執行中的 Container 檔案內容在同一台或不同主機上，匯出新的 Image 檔
+匯入時，不會將匯入的檔案內容轉換成運行或停用的 Container，而是直接匯入成 Image 檔，所以可以利用這種特質，將執行中的 Container 檔案內容在同一台或不同主機上，匯出新的 Image 檔。
+
 ```bash
 $ docker import  [匯入的檔案名稱與路徑] [Image 名稱：版本標籤]
 
