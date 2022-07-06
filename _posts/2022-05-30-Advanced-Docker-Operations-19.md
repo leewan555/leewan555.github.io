@@ -41,6 +41,7 @@ $ docker rm nginx
 ## 二、將 Container  設定環境變數
 有些軟體的 Container 啟動時要同時設定好一些變數讓它可以讀取來做為初始的設定值，  
 例如：預設的管理者帳號密碼、預設執行目錄、同意軟體授權等參數設定。  
+
 ```bash
 # 執行 Container 的同時加上 -e 可以設定變數值
 docker run -e <變數名稱>=<變數值> -p <對外的埠號>:<預設的埠號> -d <Docker Image 名稱>
@@ -66,11 +67,14 @@ $ docker exec -it mysql mysql -p
 ![](/assets/images/2022-05-30-Advanced-Docker-Operations-19/3.JPG)  
 
 ## 四、外掛 Container 的儲存空間，把資料存下來
-如果使用資料庫的 Container，資料庫檔案位置會是在 Container 內部，當不斷把資料寫進資料庫，用 `docker ps -a` 就會發現 Container 佔用的空間會不斷的長大。  
 
-Docker Container 的檔案系統是用疊層（Layer）的方式儲存，會比常見的檔案儲存更耗用空間（用一種層疊的方式來新增資料，每次新增資料，就會產生一層新資料層來疊在原來所使用的 Docker Image 上）。  
+如果資料是放在 Container 內，當 Container 掛掉且不得不刪掉時（通常 exit code 不等於 0 就會強制刪掉 Container），裡面的資料也會跟著一起被刪掉，所以將儲存空間外掛是比較保險且安全的方式。
 
-如果直接把資料庫檔案存在 Container 內部，就會因為產生大量的新資料層而快速吃掉硬碟空間，如果之後想把資料帶走，就要匯出這個 Container 來產生新的 Docker Image，超級麻煩。  
+而且，假設使用資料庫的 Container，資料庫檔案位置會是在 Container 內部，當不斷把資料寫進資料庫，用 `docker ps -a` 查看會發現 Container 佔用的空間會不斷的長大。  
+
+Docker Container 的檔案系統是用疊層（Layer）的方式儲存，會比常見的檔案儲存更耗空間（用一種層疊的方式來新增資料，每次新增資料，就會產生一層新資料層來疊在原來所使用的 Docker Image 上）。  
+
+直接把資料庫檔案存在 Container 內部，就會因為產生大量的新資料層而快速吃掉硬碟空間，如果之後想把資料帶走，就要匯出這個 Container 來產生新的 Docker Image，超級麻煩。  
 
 所以就可以外掛 Container 的儲存空間，把資料另外存下來。  
 
@@ -89,9 +93,9 @@ $ docker run -v /home/nginx-test/nginx.conf:/etc/nginx/nginx.conf -v /var/www:/u
 ![](/assets/images/2022-05-30-Advanced-Docker-Operations-19/4.JPG)  
 
 ## 五、直接執行 Container 內的程式或指令
-有些 Container 用途是被當作軟體工具包，docker run 可以直接在最後面加上想要執行的指令，讓 Container 一啟動完成後就執行指定的指令。  
-{% raw %}
+有些 Container 用途是被當作軟體工具包，`docker run` 可以直接在最後面加上想要執行的指令，讓 Container 一啟動完成後就執行指定的指令。  
 
+{% raw %}
 ```bash
 $ docker run <Docker Image 名稱> <指令完整檔案路徑與名稱及指令選項>
 
@@ -110,20 +114,21 @@ $ docker run --rm -v C:\downloads:/home/test ubuntu /bin/ls -l /home/test
 ```
 
 ## 七、讓 Container 掛掉後自動重新啟動，或開機後自動啟動
-{% raw %}
+
 `docker run` 可以使用 `--restart` 來決定要不要嘗試自動重新啟動 Container。  
 
-`--restart` 選項：no、always、unless-stopped、on-failure  
+`docker run --restart` 的選項有：`no`、`always`、`unless-stopped`、`on-failure`  
 
 - `no`：預設值，不自動重新啟動。
 - `always`：（exit code 必須是正常值=0）可以達到電腦開機就自動啟動 Container 的效果，因為這個 Container 會跟 Docker 本身的 Daemon 綁在一起，所以 Docker 只要一啟動，有 \--restart=always 的 Container 就會跟著啟動。  
 - `unless-stopped`：（exit code 必須是正常值=0）Container 會自動啟動，但是不會在電腦開機時自動啟動。  
 - `on-failure`：exit code 不等於 0 時自動啟動，因為若 exit code 不等於 0 代表可能是錯誤造成的退出或結束，通常會指定自動重啟的次數，以防造成無窮啟動迴圈。  
 
+{% raw %}
 ```bash
-$docker run --restart=always nginx
-$docker run --restart=unless-stopped nginx
-$docker run --restart=on-failure:5 nginx
+$ docker run --restart=always nginx
+$ docker run --restart=unless-stopped nginx
+$ docker run --restart=on-failure:5 nginx
 ```
 {% endraw %}
 
@@ -132,7 +137,8 @@ $docker run --restart=on-failure:5 nginx
 {: .prompt-info }
 
 ```bash
-# -t：把 Container 開在"互動模式"
+# -i：互動模式
+# -t：把指令執行結果送出來
 $ docker exec -it <Container 名稱或 ID> <指令完整檔案路徑與名稱及指令選項>
 
 # 進入 nginx 操作命令列
@@ -142,7 +148,8 @@ $ docker exec -it nginx-cmd /bin/bash
 ![](/assets/images/2022-05-30-Advanced-Docker-Operations-19/5.JPG) 
 
 ## 九、Container 綁定指定的 IP 位址（正式的服務環境必用）
-如果只有指定埠號而沒有指定 Container 要綁到哪個 IP 位址，Docker 會預設綁定到主機的 0.0.0.0，表示這個主機上的任一組 IP 都可以連到這個 Container。
+如果只有指定埠號而沒有指定 Container 要綁到哪個 IP 位址，預設會綁定到主機的 0.0.0.0，表示這個主機上的任一組 IP 都可以連到這個 Container。
+
 ```bash
 # 指定 Container 綁定 IP位址
 $ docker run -p <主機的 IP 位址>:<主機的連接埠號>:<Container 的連接埠號> -d <Docker Image 名稱>
@@ -168,7 +175,8 @@ $ docker run --name=<Contianer 名稱> --net=<網路名稱>
 
 在虛擬機時，會把網站伺服器跟資料庫系統這兩套都安裝同一個虛擬機上。  
 
-但在 Container 上，就不建議這樣的作法，比較建議用 `docker network` 建立一個 Docker 網路，然後再把這兩套軟體分別啟動為獨立的 Container，同時在 `docker run` 的時候，利用 `--net` 選項將這兩個 Container 加到同一個 Docker 網路之中。
+但在 Container 上，就不建議這樣的作法，比較建議用 `docker network` 建立一個 Docker 網路，然後再把這兩套軟體分別啟動為獨立的 Container，同時在 `docker run` 的時候，利用 `--net` 選項將這兩個 Container 加到同一個 Docker 網路之中。   
+
 ```bash
 # 建立 nginx-a 和 nginx-b 兩個 Container 然後加入到 nginx-net 的 Docker 網路，然後 nginx-a 用 ping 指令加上 nginx-b 的 Container 名稱就可以 ping 到 nignx-b，而不用知道 nginx-b 的 IP
 $ docker network create  nignx-net
@@ -203,6 +211,7 @@ Docker 網路被移除後，所有已加入該 Docker 網路的 Container 都會
 `docker stop` 會讓 Container 進入標準的關機程序，也就是說會讓 Container 收到要關機的訊號，並通知各個程序進入各自的關機處理程序（像是資料同步或更新到檔案等工作）。
 
 `docker kill` 是當遇到使用 `docker stop` 關閉不了，需要強制關閉的狀況時來使用。  
+
 ```bash
 $ docker stop <Container 名稱或 ID>
 
@@ -217,6 +226,7 @@ $ docker kill <Container 名稱或 ID>
 有些事項要特別注意，才可以做到只下載新版 `docker image` 和用 `docker run` 重新啟動 Container 就可以完成更新的做法：  
 (1) 不要在 Container 內儲存任何資料和設定  
 (2) 要記下啟動 Container 時所使用的 `docker run` 指令和選項及參數  
+
 ```bash
 # 檢視或備份運行中的 Container 資訊
 $ docker inspect <Container 名稱或 ID>
@@ -247,6 +257,7 @@ docker run <原來的選項與參數>
 `docker run` 會在啟動 Container 時，立即建立一組 Data volume，並掛載此 Data volume 至 Container 的 /usr/share/nginx/html 資料夾路徑上，同時，還會自動把該資料夾內的檔案複製到此新建的 Data Volume 裡。  
 
 用這方式建立的 Data volume 名稱是隨機的，不過可以使用 `docker inspect <Container 名稱或 ID>` 來查詢。  
+
 ```bash
 $ docker run -v /usr/share/nginx/html --name=nginx-vol -p 8080:80 -d nginx
 ```
@@ -271,14 +282,17 @@ $ docker volume create <volume 名稱>
 
 # 建立名叫 nginx-html 的 data volume
 $ docker volume create nginx-html
+
 # 查看一下剛剛建立的 Data volume
 $ docker volume ls 
+
 # 將 docker volume create 建立的 Data volume 掛載到新啟動的 Container 的 /usr/share/nginx/html 上
 $ docker run -v nginx-html:/usr/html/nginx/html --name nginx-vol -p 8080:80 -d nginx
 ```
 可以將這個 Data volume 同時共用到其他 Container 上面，指令跟上面一樣。  
 
 不過共用的話要考量到"共用讀寫"同一檔案的問題，如果多個 Container 共用一個 Data volume 最好還是以不會共同更新同一個檔案的前題為原則，以免資料混亂或錯誤。  
+
 ```bash
 $ docker run -v nginx-html:/usr/html/nginx/html --name nginx-vol2 -p 8080:80 -d nginx
 ```
@@ -294,6 +308,7 @@ $ docker volume inspect nginx-html
 ### (4) 刪除 Docker Data volume
 Data volume 不會自動被刪除，必須要手動操作刪除指令，  
 且必須刪除綁著此 Data volume 的 Container 才能刪除該 Data volume。  
+
 ```bash
 $ docker volume rm <Data volume 名稱>
 ```
