@@ -536,7 +536,7 @@ $ docker-compose stop node-red db
 ### 5. rm
 **用途：移除已經停止運行的 Container，可指定一或多個 Container 的名稱，若沒指定就會移除 docker-compose 檔案裡全部停用的 Container。**
 ```bash        
--s 可以移除仍在運行中的 Container         
+# -s 可以移除仍在運行中的 Container         
 $ docker-compose rm -v          
 $ docker-compose rm -v node-red           
 $ docker-compose rm -s node-red
@@ -593,7 +593,7 @@ $ docker-compose port node-red 1880
 ```bash
 $ docker-compose ps         
 
-# # 只顯示 Container ID 資訊
+# 只顯示 Container ID 資訊
 $ docker-compose ps -q    
 ```
 
