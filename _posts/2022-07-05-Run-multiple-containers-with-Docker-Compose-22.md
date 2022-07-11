@@ -1,5 +1,5 @@
 ---
-title:  "利用 Docker Compose 管理多個 Container "
+title:  "利用 Docker Compose 管理多個 Container"
 slug: Run-multiple-containers-with-Docker-Compose-22
 date:   2022-07-05
 excerpt: 呱呱。
