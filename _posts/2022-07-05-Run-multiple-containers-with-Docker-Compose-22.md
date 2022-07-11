@@ -18,6 +18,7 @@ tags:
 | ----- |  
 | Centos 7.6 | 
 | Docker 1.13.1 | 
+| docker-compose version 1.18.0 |
 
 
 ## 一、Docker Compose 介紹
@@ -75,9 +76,9 @@ docker-compose 指令可以執行大部分的 docker 指令的選項和功能，
 
 docker-compose.yml 是採用 YAML 檔案格式來撰寫，是一種以「鍵/值 (Key/Value)」方式指定設定變數與設定值的格式，除了 `version` 標籤外，主要是由 `services（服務）`、`volumes（資料卷）`、`networks（網路）` 等三大標籤所構成。  
 
-- services：定義和設定此 docker-compose.yml 需要啟動的 Container 資訊，功能和所使用的標籤和 `docker run` 相似，都是用於啟動 Container。  
-- volumes：定義給服務使用資料儲存資訊。  
-- networks：定義給服務的連結網路資訊。  
+- services：定義和設定此 docker-compose.yml 需要啟動的 Container 資訊，功能和所使用的標籤和 `docker run` 相似，都是用於啟動 Container  
+- volumes：定義給服務使用資料儲存資訊  
+- networks：定義給服務的連結網路資訊  
 
 而每個 docker-compose.yml 的檔案結構會有 `version`、`services`、`volumes`、`networks`、`configs`、`secrets` 等六個頂層指令組成，後面會講到。  
 

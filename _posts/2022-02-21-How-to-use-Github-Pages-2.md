@@ -80,7 +80,7 @@ Branch 可以先選`None`，也可以選擇其他分支（範例選 main）
 
 我選 Dinky 主題當範例，然後按下`Select theme`  
 
-（如果想學習用更方便的主題工具，請按 [用 GitHub Pages 建立個人部落格吧！(2)－在 MacOS 上安裝 Ruby 與 Jekyll](https://notes.lookfred.com/jekyll/ruby/github%20pages/macos-install-ruby-and-jekyll-to-create-Github-Pages-3/ "用 GitHub Pages 建立個人部落格吧！(2)－在 MacOS 上安裝 Ruby 與 Jekyll")）  
+（如果想學習用更方便的主題工具，請按 [用 GitHub Pages 建立個人部落格吧！(2)－在 MacOS 上安裝 Ruby 與 Jekyll](https://notes.lookfred.com/posts/MacOS-install-ruby-and-jekyll-to-create-Github-Pages-3/ "用 GitHub Pages 建立個人部落格吧！(2)－在 MacOS 上安裝 Ruby 與 Jekyll")）  
 
 ![](/assets/images/2022-02-21-How-to-use-Github-Pages-2/11.png)  
 
