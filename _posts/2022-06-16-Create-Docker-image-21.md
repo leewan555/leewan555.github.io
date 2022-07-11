@@ -1,6 +1,6 @@
 ---
 title:  "各種自製 Docker Image 的方法"
-slug: create-docker-image-21
+slug: Create-docker-image-21
 date:   2022-06-16
 excerpt: Dockerfile 像在寫腳本耶。
 categories:
