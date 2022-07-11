@@ -62,10 +62,10 @@ Docker Hub 和 Docker Cloud 的帳號是共用的，不需要分別註冊，且�
 
 ## 四、為何不用 Docker Hub 就好？
 
-Docker Hub 是免費且公開的服務，但 Docker Image 的散佈和佈署會遇到機密敏感資料與安全考量，以及使用環境的不可用性問題。  
+Docker Hub 是免費且公開的服務，但 Docker Image 的散佈和部署會遇到機密敏感資料與安全考量，以及使用環境的不可用性問題。  
 
 - 機密敏感性的安全問題：Docker Image 可能包含程式碼或不適宜公開的環境設定資訊
-- 公司或組織的環境問題：不同環境有不同考量，譬如開發環境、整合測試、使用者驗證環境、內外網連線以及儲存管理佈署 Docker Image 的需求，就會需要在公司內架設專用的 Docker Registry 
+- 公司或組織的環境問題：不同環境有不同考量，譬如開發環境、整合測試、使用者驗證環境、內外網連線以及儲存管理部署 Docker Image 的需求，就會需要在公司內架設專用的 Docker Registry 
 
 
 ## 五、架設 Docker Registry
