@@ -43,7 +43,7 @@ Docker 和 Docker Compose 是各自獨立的程式，版本號碼也不同步，
 
 ### 1. 用 yum 套件安裝
 ```bash
-$ yum install docker compose
+$ yum install docker-compose
 ```
 
 ### 2. 用 pip 安裝
