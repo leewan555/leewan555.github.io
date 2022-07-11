@@ -30,7 +30,7 @@ Docker Compose 主要是來管理需要同時運行多個 Docker Container 的�
 
 - 開發、測試環境或正式運行的生產環境皆可使用
 - 所使用的應用系統會需要連結或整合一個以上的 Container  
-- 想達到更彈性和自動化的部屬 
+- 想達到更彈性和自動化的部署 
 
 ## 三、一個 Container 或多個 Container？
 不建議將應用系統需要的服務和元件都放進同一個 Docker Container 裡面，因為設定工作會變複雜，而且這種 Docker Image 在啟動時，會需要更多的環境變數和啟動設定才能順利啟動。  
