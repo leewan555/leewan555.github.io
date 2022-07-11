@@ -34,10 +34,13 @@ DenyHosts 是一個防止暴力攻擊 SSH 的工具,
 # 在自己想要的資料夾底下將資料夾 clone 下來 (舉例在 /usr/local 資料夾)
 $ cd /usr/local
 $ git clone https://github.com/denyhosts/denyhosts.git 
+
 # 進入 denyhosts 資料夾
 $ cd denyhosts
+
 # 查看現在的路徑
 $ pwd
+
 # 開始安裝 DenyHosts 
 $ python setup.py install
 ```
@@ -52,8 +55,10 @@ $ python setup.py install
 ```bash
 # 要先安裝 python-pip (已安裝過可跳過此步驟)
 $ yum install python-pip
+
 # 安裝 ipaddr 模組
 $ pip install ipaddr
+
 # 然後再安裝一次 DenyHosts  
 $ python setup.py install
 ```
@@ -139,12 +144,13 @@ $ vim /usr/local/denyhosts/data/users-hosts
 ```bash
 # 進入 WORK_DIR 路徑
 $ cd /usr/local/denyhosts/data
+
 # 建立並編輯白名單檔案
 $ vim allowed-hosts 
 ```
 ## 七、開始使用 Denyhosts 
 
-### (1) 啟動 Denyhosts
+### 1. 啟動 Denyhosts
 > 啟動前，務必要先清空或分割 sshd 的 log 檔，不然自己會先被封鎖。 
 
 ```bash
@@ -163,7 +169,7 @@ $ ./daemon-control-dist status
 # 停止 Denyhosts
 $ ./daemon-control-dist stop
 ``` 
-### (2) 分割 sshd 的 log 檔 (/var/log/secure)
+### 2. 分割 sshd 的 log 檔 (/var/log/secure)
 想要馬上分割 /var/log/secure 檔案，可以強制執行 logrotate，而不用等定期的分割時間。 
 
 ```bash
