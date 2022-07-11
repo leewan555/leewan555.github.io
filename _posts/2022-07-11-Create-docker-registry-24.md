@@ -23,20 +23,20 @@ tags:
 ## 一、Docker Registry 是什麼？
 
 - 開放原始碼的軟體
-- 用途：提供存放 Docker Image 的空間，可與他人共用
-- 可以分為公開或私人 Registry
+- 提供存放 Docker Image 的空間，可與他人共用
+- 可以分為公開或私人的 Registry
 
 ## 二、Docker Registry v.s. Docker Distribution
 
-Docker Registry 1.0 - Docker Registry 專案
-Docker Registry 2.0 - Docker Distribution 專案
+Docker Registry 1.0 - Docker Registry 專案  
+Docker Registry 2.0 - Docker Distribution 專案  
 
 Docker Distribution 專案取代並增強 Docker Registry 專案，同時也朝向更完善且有彈性的 Docker Image 整合管理工具。  
 
 ### 1. Docker Distribution 專案新增的元件  
 
 - 函式庫：原本由 python 開發，現在改用 golang  
-- 規範：相關實作的規範都可以在 Docker Distribution 的 Github Repo 的 docs/spec 資料夾找到  
+- 規範：相關規範都可以在 Docker Distribution 的 Github Repo 的 docs/spec 資料夾找到  
 - 文件：docs 資料夾裡有 docs.docker.com 和 Docker Distribution 相關的說明文件 
   
 ### 2. Docker Distribution 專案功能的增益項目  
@@ -54,9 +54,9 @@ Docker Hub 是 Docker 官方提供的免費服務，主要用途是提供 Docker
 
 Docker Cloud 除了利用 Docker Hub 的儲存庫功能，主要用途是提供 Docker 化應用系統（Dockerized application）的完整架構與自動化服務。  
 
-Docker 化（Dockerized）：把應用程式 Docker 化，把程式跟環境包成一個 image，部屬的時候就直接使用這個 image 不需要額外安裝其他東西。  
+Docker 化（Dockerized）：把應用程式 Docker 化，把程式跟環境包成一個 image，部署的時候就直接使用這個 image 不需要額外安裝其他東西。  
 
-如果所開發的應用系統已經 Docker 化或準備 Docker 化，且運行在雲端運算環境，那 Docker Cloud 就可以協助自動化和加速整個應用系統在建版、測試、部屬、節點管理上的工作。  
+如果所開發的應用系統已經 Docker 化或準備 Docker 化，且運行在雲端運算環境，那 Docker Cloud 就可以協助自動化和加速整個應用系統在建版、測試、部署和節點管理上的工作。  
 
 Docker Hub 和 Docker Cloud 的帳號是共用的，不需要分別註冊，且可以直接在 Docker Cloud 中使用上傳到 Docker Hub 的 Docker Image。  
 
@@ -68,19 +68,19 @@ Docker Hub 是免費且公開的服務，但 Docker Image 的散佈和佈署會�
 - 公司或組織的環境問題：不同環境有不同考量，譬如開發環境、整合測試、使用者驗證環境、內外網連線以及儲存管理佈署 Docker Image 的需求，就會需要在公司內架設專用的 Docker Registry 
 
 
-## 五、架設 Docker Registr
+## 五、架設 Docker Registry
 
 ### 1. 下載及啟動 Docker Registry 的 Docker Image
 
 架設 Docker Registry 就是啟用一個 Docker Registry 的 Docker Container。  
 
 ```bash
-# -p：主機的 5000 port mapping 到 container 的 5000 port
+# -p 5000：將主機的 5000 port mapping 到 container 的 5000 port
 $ docker pull registry:2
 $ docker run -d -p 5000:5000 --name registry registry:2
 ```
 
-也可以用 `-v` 掛載資料卷，因為 push 到 Docker Registry 的資料是放在 container 裡面的，如果把 Docker Container 刪除掉 Docker Registry 的 Image 資料就會不見，因此需要使用 `–v` 參數將主機的檔案路徑 mapping 到 container 裡面的檔案路徑，這樣 Docker Container 被刪除 Docker Registryy 的 Image 資料還會存在。  
+也可以用 `-v` 掛載資料卷，因為如果 Docker Registry 的資料是放在 Container 裡面，刪掉 Container 時裡面的資料就會跟著不見，所以需要使用 `–v` 將主機的檔案路徑 mapping 到 Container 裡面的檔案路徑，這樣就算 Docker Container 被刪除， Docker Registry 的 Image 資料還會存在。  
 
 ```bash
 $ docker run -d -p 5000:5000 -v /usr/local/docker/registry:/var/lib/registry --name registry registry:2
@@ -89,7 +89,8 @@ $ docker run -d -p 5000:5000 -v /usr/local/docker/registry:/var/lib/registry --n
 ![](/assets/images/2022-07-11-Create-docker-registry-24/1.JPG) 
 
 
-### 2. 可用指令或瀏覽器確認是否啟動成功，也可以檢查版本是否為 V2，如果傳回「{}」，就表示 Docker Registry 已經成功運作
+### 2. 用指令或瀏覽器確認 Docker Registry 是否啟動成功
+也可以檢查版本是否為 V2，如果傳回「{ }」，就表示 Docker Registry 已經成功運作。   
 ```bash
 $ curl -LX GET 127.0.0.1:5000/v2
 {}
@@ -119,6 +120,9 @@ $ docker tag nginx 127.0.0.1:5000/nginx_local
 
 # 如果不是在架設 Docker Registry 的電腦上執行，可以把 IP 位址換成實際的位址
 $ docker tag nginx x.x.x.x:5000/nginx_local
+
+# 查看標記後的 Image
+$ docker images
 ```
 ![](/assets/images/2022-07-11-Create-docker-registry-24/4.JPG) 
 
@@ -131,7 +135,7 @@ $ docker push 127.0.0.1:5000/nginx_local
 
 ![](/assets/images/2022-07-11-Create-docker-registry-24/5.JPG)
 
-這個錯誤訊息主要是因為安全性上的問題，需要修改 client 的 Docker 設定。
+這個錯誤訊息主要是因為安全性上的問題，需要修改 client 端的 Docker 設定。
 
 `insecure-registries`：insecure 的意思是非安全性，所以如果是使用 http 協定的 docker registry 就需要設定此參數。
 
