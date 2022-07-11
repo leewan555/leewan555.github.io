@@ -18,8 +18,8 @@ tags:
 | Centos 7.6 | 
 | Docker 1.13.1 | 
 
-## 一、找到要用的硬像（Image）檔
-### (1) 尋找某個 Docker Image
+## 一、找到要用的映像檔（Image）
+### 1. 尋找某個 Docker Image
 ```bash
 $ docker search <軟體名稱>
 
@@ -29,7 +29,7 @@ $ docker search nginx
 ![](/assets/images/2022-05-28-Docker-Command-18/1.JPG)
 
 
-### (2) 下載搜尋到的 Docker Image
+### 2. 下載搜尋到的 Docker Image
 \<Docker Image 名稱> 就是 docker search 指令執行結果所顯示的 [NAME]  
 ```bash
 $ docker pull <Docker Image 名稱>
@@ -39,7 +39,7 @@ $ docker pull nginx
 ```
 ![](/assets/images/2022-05-28-Docker-Command-18/2.JPG)
 
-### (3) 查看已經下載過的 Docker image 檔
+### 3. 查看已經下載過的 Docker image 檔
 ```bash
 $ docker images
 ```
