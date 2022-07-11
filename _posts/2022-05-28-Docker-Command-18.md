@@ -206,5 +206,22 @@ $ docker logs -f 81e3
 ```
 ![](/assets/images/2022-05-28-Docker-Command-18/10.JPG)
 
+
+## 十二、小技巧
+### 1. 停止所有的 containers
+```bash
+$ docker stop $(docker ps -a -q) 
+```
+
+### 2. 刪除所有的 containers
+```bash
+$ docker rm $(docker ps -a -q)
+```
+
+### 3. 刪除所有的 images
+```bash
+$ docker rmi $(docker images -a -q)
+```
+
 ## 參考資料
 - Docker 這樣學才有趣：從入門，到玩直播、挖礦
