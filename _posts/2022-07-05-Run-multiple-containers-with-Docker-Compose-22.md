@@ -111,8 +111,7 @@ $ docker-compose -p 專案名稱 up -d
 ![](/assets/images/2022-07-05-Run-multiple-containers-with-Docker-Compose-22/4.JPG)    
 
 ![](/assets/images/2022-07-05-Run-multiple-containers-with-Docker-Compose-22/5.JPG)    
-
-![](/assets/images/2022-07-05-Run-multiple-containers-with-Docker-Compose-22/6.JPG)    
+ 
 
 可以看到剛建立的資料卷及網路前面都會加上「nodered_」字串，是因為那個字串預設會是 docker-compose.yml 所在資料夾的名稱，並會移除資料夾名稱中的非英數字元，如果想指定專案名稱可以加上 `-p` 選項。    
 
