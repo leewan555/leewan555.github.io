@@ -21,7 +21,7 @@ timezone: Asia/Taipei
 # jekyll-seo-tag settings › https://github.com/jekyll/jekyll-seo-tag/blob/master/docs/usage.md
 # ↓ --------------------------
 
-title: Fred 愛玩水                          # the main title
+title: Lazy Day Lazy Fred                          # the main title
 
 tagline: Better late than never.  # it will display as the sub-title
 
@@ -29,7 +29,7 @@ description: >-                        # used by seo meta and the atom feed
   Hello!
 
 # fill in the protocol & hostname for your site, e.g., 'https://username.github.io'
-url: 'https://notes.lookfred.com/'
+url: 'https://notes.lookfred.com'
 
 github:
   username: leewan555             # change to your github username

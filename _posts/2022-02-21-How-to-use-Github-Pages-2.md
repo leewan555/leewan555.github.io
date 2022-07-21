@@ -1,5 +1,5 @@
 ---
-title: "用 GitHub Pages 建立個人部落格吧！(1)－Github Pages 設定"
+title: "Github Pages 設定"
 slug: How-to-use-Github-Pages-2
 date: 2022-02-21
 excerpt: 一起來建立自己的部落格！

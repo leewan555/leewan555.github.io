@@ -1,5 +1,5 @@
 ---
-title:  "比 owner, group, others 還要更詳細的 ACL 權限"
+title:  "更詳細的 ACL 權限"
 slug: Centos-7-ACL-permission-10
 date:   2022-03-16
 excerpt: 就不會門窗都打開開。

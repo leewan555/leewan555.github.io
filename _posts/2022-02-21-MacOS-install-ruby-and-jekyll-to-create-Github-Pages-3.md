@@ -1,5 +1,5 @@
 ---
-title:  "用 GitHub Pages 建立個人部落格吧！(2)－在 MacOS 上安裝 Ruby 與 Jekyll"
+title:  "在 MacOS 上安裝 Ruby 與 Jekyll"
 slug: MacOS-install-ruby-and-jekyll-to-create-Github-Pages-3
 date:   2022-02-21
 excerpt: 其實其他 Linux 版本也都適用啦。
@@ -99,8 +99,8 @@ $ bundle exec jekyll serve
 可以新增主選單、主題或是更改樣式
 自由發揮！
 
-## 二、Github Page 
-Giuhub Page 教學請看 [此篇文章](https://notes.lookfred.com/posts/How-to-use-Github-Pages-2/)  
+## 二、Github Pages 
+Giuhub Pages 教學請看 [此篇文章](https://notes.lookfred.com/posts/How-to-use-Github-Pages-2/)  
 若是 clone 別人的主題，記得在 push 時不能直接 push 喔，因為那是別人的 Repo！  
 如果是使用 Github Desktop，記得按 Repository Setting -> Remote -> Primary remote repositoey (origin)  
 在欄內輸入自己的 Github Pages 的 Repo 的網址，成功在 Github Desktop 上顯示後再 push 上去喔～  
