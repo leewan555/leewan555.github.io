@@ -84,6 +84,22 @@ geoipupdate 2.5.0
 ```
 查看版本是因為 License Key 需要對應 `geoipupdate` 的版本。  
 
+
+### 也可以從 MaxMind 官方 Github 下載新版的 geoipupdate
+
+[maxmind/geoipupdate
+](https://github.com/maxmind/geoipupdate/releases "maxmind/geoipupdate")
+
+目前最新的版本是 4.9.0 (2022/08)。
+
+```bash
+# 下載 geoipupdate 的 RPM 套件
+$ wget https://github.com/maxmind/geoipupdate/releases/download/v4.9.0/geoipupdate_4.9.0_linux_386.rpm
+
+# 安裝 geoipupdate 
+$ rpm -i geoipupdate_4.8.0_linux_386.rpm
+```
+
 ## 四、取得免費的 GeoLite2 的 License Key
 MaxMind 提供的資料庫有分為商業版 GeoIP2 和免費版 GeoLite2，免費版的資料庫有各國家的 IP 對照表，而商業版有城市、經緯度等等更詳細的資訊。  
 
