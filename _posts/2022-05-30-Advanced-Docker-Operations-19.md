@@ -208,7 +208,7 @@ Docker 網路被移除後，所有已加入該 Docker 網路的 Container 都會
 ## 十二、docker stop v.s. docker kill?
 建議使用 `docker stop` 來關閉 Container。  
 
-`docker stop` 會讓 Container 進入標準的關機程序，也就是說會讓 Container 收到要關機的訊號，並通知各個程序進入各自的關機處理程序（像是資料同步或更新到檔案等工作）。
+`docker stop` 會讓 Container 進入標準的關機行程，也就是說會讓 Container 收到要關機的訊號，並通知各個行程進入各自的關機處理行程（像是資料同步或更新到檔案等工作）。
 
 `docker kill` 是當遇到使用 `docker stop` 關閉不了，需要強制關閉的狀況時來使用。  
 

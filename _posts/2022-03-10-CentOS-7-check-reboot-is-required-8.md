@@ -74,7 +74,7 @@ $ needs-restarting -s
 $ systemctl restart sshd
 ```
 
-## 六、顯示由當前 UID 建立起的程序
+## 六、顯示由當前 UID 建立起的行程
 ```bash
 $ needs-restarting -r
 ```

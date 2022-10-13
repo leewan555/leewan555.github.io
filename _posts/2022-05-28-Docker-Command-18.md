@@ -59,7 +59,7 @@ $ docker run -p 8080:80 -d nginx
 ![](/assets/images/2022-05-28-Docker-Command-18/4.JPG)
 
 ## 三、解決 Container 啟動後就結束的問題
-Container 在作業系統也是被視為一隻執行中的程序（Process），  
+Container 在作業系統也是被視為一隻執行中的行程（Process），  
 所以如果 Docker 裡面執行不是伺服器般的軟體，就會像跑一隻程式一樣，跑完就結束（像 Ubuntu 或 Node.js），  
 如果 Container 一啟動就結束的話，可以在 Container 啟用一個持續執行中的程式，保持運行。  
 
