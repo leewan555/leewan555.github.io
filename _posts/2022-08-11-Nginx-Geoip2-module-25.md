@@ -9,6 +9,7 @@ tags:
   - nginx
   - geoip2
   - geolite2
+  - module
 
 ---
 
