@@ -135,9 +135,12 @@ $ yum install pcre pcre-devel openssl openssl-devel -y
 ```
 
 ### 3. 在想要的路徑下載 Naxsi 
+我是安裝在 `/usr/local/nginx_module` 內。
+
 ```bash
 $ git clone https://github.com/nbs-system/naxsi.git
 ```
+![](/assets/images/2022-10-13-Nginx-Naxsi-module-28/1.JPG)
 
 ### 4. 路徑整理
 ```config
@@ -158,17 +161,18 @@ $ git clone https://github.com/nbs-system/naxsi.git
 {% raw %}
 ```bash
 $ ./configure --user=www --group=www \
---prefix=/usr/local/nginx \
---with-http_stub_status_module \
---with-http_ssl_module \
---with-http_v2_module \
---with-http_gzip_static_module \
---with-http_sub_module \
---with-stream \
---with-stream_ssl_module \
---with-openssl=/root/lnmp1.6/src/openssl-1.1.1d \
---with-openssl-opt='enable-weak-ssl-ciphers' \
---add-module=/usr/local/naxsi/naxsi_src
+ --prefix=/usr/local/nginx \
+ --with-http_stub_status_module \
+ --with-http_ssl_module \
+ --with-http_v2_module \
+ --with-http_gzip_static_module \
+ --with-http_sub_module \
+ --with-stream \
+ --with-stream_ssl_module \
+ --with-openssl=/root/lnmp1.6/src/openssl-1.1.1d \
+ --with-openssl-opt=enable-weak-ssl-ciphers \
+ --add-dynamic-module=/usr/local/nginx_module/ngx_http_geoip2_module \
+ --add-dynamic-module=/usr/local/nginx_module/naxsi/naxsi_src
 
 $ make 
 
@@ -177,21 +181,39 @@ $ make install
 ```
 {% endraw %}
 
+
+編譯成功後長這樣：  
+
+{% raw %}
+```bash
+$ nginx -V
+
+nginx version: nginx/1.16.1
+built by gcc 4.8.5 20150623 (Red Hat 4.8.5-44) (GCC)
+built with OpenSSL 1.1.1d  10 Sep 2019
+TLS SNI support enabled
+configure arguments: --user=www --group=www --prefix=/usr/local/nginx --with-http_stub_status_module --with-http_ssl_module --with-http_v2_module --with-http_gzip_static_module --with-http_sub_module --with-stream --with-stream_ssl_module --with-openssl=/root/lnmp1.6/src/openssl-1.1.1d --with-openssl-opt=enable-weak-ssl-ciphers --add-dynamic-module=/usr/local/nginx_module/ngx_http_geoip2_module --add-dynamic-module=/usr/local/nginx_module/naxsi/naxsi_src
+```
+{% endraw %}
+
+
+![](/assets/images/2022-10-13-Nginx-Naxsi-module-28/2.JPG)
+
 ### 6. 將 Naxsi 主要設定檔複製進 Nginx 資料夾中
 ```bash
-$ cp /usr/local/naxsi/naxsi_config/naxsi_core.rules /usr/local/nginx/conf/
+$ cp /usr/local/nginx_module/naxsi/naxsi_config/naxsi_core.rules  /usr/local/nginx/conf
 ```
 
 ### 7. 新增一個 Naxsi 規則檔案
 
-這是上面攔截分數把他包成一個檔案，到時候再 include 到 nginx.conf 裡面。
+這是上面攔截分數把他包成一個檔案 `naxsi_custom.rules`，到時候再 include 到 nginx.conf 裡面。
 
 > 底下設定在上面第 2 節有介紹。  
 {: .prompt-info }
 
 {% raw %}
 ```bash
-$ vim /usr/local/nginx/conf/naxsi_custom.rules;
+$ vim /usr/local/nginx/conf/naxsi_custom.rules
 
 SecRulesEnabled;
 #LearningMode;
@@ -208,6 +230,7 @@ error_log /home/wwwlogs/naxsi_attach.log;
 ```
 {% endraw %}
 
+![](/assets/images/2022-10-13-Nginx-Naxsi-module-28/3.JPG)
 
 ### 8. 開始設定 
 #### (1) nginx.conf
@@ -215,18 +238,20 @@ error_log /home/wwwlogs/naxsi_attach.log;
 $ vim /usr/local/nginx/conf/nginx.conf
 ```
 
+{% raw %}
 裡面設定：  
 ```config
+# 在全區塊 pid 下面新增這句：
+load_module modules/ngx_http_naxsi_module.so;
+
+# 在 http include rules
 http
   {
     include /usr/local/nginx/conf/naxsi_core.rules;
   }
 
-server 
-  {
 
-    set $naxsi_extensive_log 1;
-
+# 在 server include rules
 server 
   {
   location /
@@ -240,6 +265,10 @@ server
       }
   }
 ```
+{% endraw %}
+
+![](/assets/images/2022-10-13-Nginx-Naxsi-module-28/4.JPG)
+![](/assets/images/2022-10-13-Nginx-Naxsi-module-28/5.JPG)
 
 #### (2) vhost.conf
 ```bash
@@ -262,6 +291,7 @@ server
   }
 ```
 
+![](/assets/images/2022-10-13-Nginx-Naxsi-module-28/6.JPG)
 
 ### 9. 重新啟動或重新讀取 Nginx
 ```bash
