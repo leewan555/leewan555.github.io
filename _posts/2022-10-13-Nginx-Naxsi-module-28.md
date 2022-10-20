@@ -77,7 +77,7 @@ MainRule "str:@@" "msg:double arobase (@@)" "mz:BODY|URL|ARGS|$HEADERS_VAR:Cooki
 {% endraw %}
 
 ## 五、Naxsi 計分方式與攔截分數介紹
-### 1. 計分方式
+### 1. 規則解說與計分方式
 
 > 這是 `naxsi_core.rules` 內的部份規則。  
 {: .prompt-info }
@@ -85,9 +85,9 @@ MainRule "str:@@" "msg:double arobase (@@)" "mz:BODY|URL|ARGS|$HEADERS_VAR:Cooki
 {% raw %}
 | 規則 | 規則解說 |  
 | ----- | ----- |       
-| id 為 1001 的規則 | `MainRule "str:\"" "msg:double quote" "mz:BODY|URL|ARGS|$HEADERS_VAR:Cookie" "s:$SQL:8,$XSS:8" id:1001;` <br> 表示如果在請求體(BODY)，統一資源定位符(URL)，請求參數(ARGS)，請求標題(Cookie)任何地方出現了雙引號(")，就把該請求可能是 SQL 注入或是跨站腳本攻擊的判斷分數分別設置為 8 |  
-| id 為 1002 的規則表示 | `MainRule "str:0x" "msg:0x, possible hex encoding" "mz:BODY|URL|ARGS|$HEADERS_VAR:Cookie" "s:$SQL:2" id:1002;` <br> 表示如果在請求體(BODY)，統一資源定位符(URL)，請求參數(ARGS)，請求標題(Cookie)任何地方出現了雙引號(")，就把該請求可能是 SQL 注入或是跨站腳本攻擊的判斷分數分別設置為2 |     
-| id 為 1013 的規則表示 | `MainRule "str:'" "msg:simple quote" "mz:ARGS|BODY|URL|$HEADERS_VAR:Cookie" "s:$SQL:4,$XSS:8" id:1013;` <br> 表示如果在請求體(BODY)，統一資源定位符(URL)，請求參數(ARGS)，請求標題(Cookie)任何地方出現了單引號(')，那麼就把該請求可能是 SQL 注入的判斷分數設置為 4，並且把跨站腳本攻擊的判斷分數設置為 8 |  
+| id 為 1001 的規則 | `MainRule "str:\"" "msg:double quote" "mz:BODY|URL|ARGS|$HEADERS_VAR:Cookie" "s:$SQL:8,$XSS:8" id:1001;` <br> 表示如果在請求體(BODY)，統一資源定位符(URL)，請求參數(ARGS)，請求標題(Cookie)任何地方出現了雙引號(")，就表示該請求可能是 SQL 注入或是 XSS 攻擊，判斷分數為 8 。 |  
+| id 為 1002 的規則表示 | `MainRule "str:0x" "msg:0x, possible hex encoding" "mz:BODY|URL|ARGS|$HEADERS_VAR:Cookie" "s:$SQL:2" id:1002;` <br> 表示如果在請求體(BODY)，統一資源定位符(URL)，請求參數(ARGS)，請求標題(Cookie)任何地方出現了雙引號(")，就表示該請求可能是 SQL 注入或是 XSS 攻擊，判斷分數皆為2 。 |     
+| id 為 1013 的規則表示 | `MainRule "str:'" "msg:simple quote" "mz:ARGS|BODY|URL|$HEADERS_VAR:Cookie" "s:$SQL:4,$XSS:8" id:1013;` <br> 表示如果在請求體(BODY)，統一資源定位符(URL)，請求參數(ARGS)，請求標題(Cookie)任何地方出現了單引號(')，就表示該請求可能是 SQL 注入或是 XSS 攻擊，判斷分數為 4 跟 8 。|  
 
 {% endraw %}
 
@@ -103,7 +103,7 @@ SecRulesEnabled;
 # 學習模式 預設關閉
 #LearningMode; 
 
-# 透過 libinjection 偵測 SQL 注入和 XSS 攻擊
+# 透過 libinjection 判斷 SQL 注入和 XSS 攻擊
 LibInjectionSql;
 LibInjectionXss;
 
@@ -316,31 +316,47 @@ http://localhost/?id=<>
 ### 2. 主機上測試 
 在終端機上面存取有設定 Naxsi 的網站：
 ```config
-$ curl "http://47.52.76.54/?a=<>"
+$ curl -IL "http://x.x.x.x/?a=<>"
 $ wget "https://newgame.fish0915.com/?<>"
 ```
 
 ## 八、攔截成功畫面與分析
 
-### 1. 攔截畫面
+### 1. 當下攔截畫面
 觀察網站收到 SQL 注入的請求後有沒有報400。 
 
-圖片 
+![](/assets/images/2022-10-13-Nginx-Naxsi-module-28/7.JPG)
 
-### 2. log 分析
+
+![](/assets/images/2022-10-13-Nginx-Naxsi-module-28/8.JPG)
+
+
+![](/assets/images/2022-10-13-Nginx-Naxsi-module-28/9.JPG)
+
+### 2. 攔截 log 查看
+![](/assets/images/2022-10-13-Nginx-Naxsi-module-28/10.JPG)
+
+### 3. log 分析
 
 查看設定的 `naxsi_attach.log`，若在 log 中出現 NAXSI_FMT 開頭，就是啟用成功。    
-挑 2020/06/12 05:10:30 那行 log 來當範例。
+挑 2022/10/20 17:53:37 那行 log 來當範例（IP 跟網址有改過）。
 
-圖片
+{% raw %}
+```config
+2022/10/20 17:53:37 [error] 7275#0: *5428 NAXSI_FMT: ip=223.58.42.103&server=taipei.test.com&uri=/=a<>&vers=1.3&total_processed=20&total_blocked=3&config=block&cscore0=$XSS&score0=8&zone0=URL&id0=1302&var_name0=, client: 223.58.42.103, server: taipei.test.com, request: "GET /=a%3C%3E HTTP/2.0", host: "taipei.test.com"
+```
+{% endraw %}
+
 
 
 且對應到的規則是以下兩行：  
 
 {% raw %}
 ```config
-MainRule "str:;" "msg:semicolon" "mz:BODY|URL|ARGS" "s:$SQL:4,$XSS:8" id:1008;  
-MainRule "str:," "msg:comma" "mz:BODY|URL|ARGS|$HEADERS_VAR:Cookie" "s:$SQL:4" id:1015;
+########################################
+## Cross Site Scripting IDs:1300-1399 ##
+########################################
+MainRule "str:<" "msg:html open tag" "mz:ARGS|URL|BODY|$HEADERS_VAR:Cookie" "s:$XSS:8" id:1302;
 ```
 {% endraw %}
 
@@ -349,29 +365,23 @@ MainRule "str:," "msg:comma" "mz:BODY|URL|ARGS|$HEADERS_VAR:Cookie" "s:$SQL:4" i
 
 | log | log 分析 |  
 | ----- | ----- |       
-| 查看 log 開頭有沒有 NAXSI_FMT | 2020/06/12 05:10:30 [error] 23090#0: *186 NAXSI_FMT:   | 
-| 對方IP | ip=2.47.10.131& | 
-| 請求伺服器 IP　| server=127.0.0.1& | 
-| uri | uri=/adv,/cgi-bin/weblogin.cgi& | 
-| 學習模式(有打開才會出現) | learning | 
-| naxsi 版本　| vers=0.56& |  
-| 總共請求 9 次　| total_processed=9& |  
+| NAXSI_FMT | 2022/10/20 17:53:37 [error] 7275#0: *5428 NAXSI_FMT:   | 
+| 對方IP | ip=223.58.42.103& | 
+| 請求的主機名　| server=taipei.test.com& | 
+| uri | uri=/=a<>& | 
+| naxsi 版本　| vers=1.3& |  
+| 總共請求 20 次　| total_processed=20& |  
 | 總共阻擋 3 次　| total_blocked=3& |  
 | 設定：攔截　| config=block& |  
-| 分數標籤：SQL　| cscore0=$SQL& |  
-| SQL 分數　| score0=8& |  
 | 分數標籤：XSS　| cscore1=$XSS& | 
 | XSS分數 | score1=8& |  
-| 第一個在 URL 裡　| zone0=URL& |   
-| 符合的規則 ID0　| id0=1015& |   
-| 符合的變數名0 | var_name0=& |   
-| 第二個在 ARGS 裡(GET裡全部的引數)　| zone1=ARGS& | 
-| 符合的規則 ID1　 | id1=1008& |
-| 符合的變數名1| var_name1=username, |   
-| 對方 IP | client: 2.47.10.131, |   
-| | server: _, |    
-| 請求內容 | request: "GET /adv,/cgi-bin/weblogin.cgi?username=admin%27%3Bls%20%23&password=asdf HTTP/1.1", |    
-| | host: "127.0.0.1" |   
+| 符合的區域　| zone0=URL& |   
+| 符合的規則 id　| id0=1302& |   
+| 符合的變數 | var_name0= , |   
+| 對方 IP | client: 223.58.42.103, |   
+| | server=taipei.test.com, |    
+| 請求內容 | request: "GET /=a%3C%3E HTTP/2.0", |    
+| | host: "taipei.test.com" |   
 
 
 {% endraw %}
@@ -392,9 +402,15 @@ MainRule "str:," "msg:comma" "mz:BODY|URL|ARGS|$HEADERS_VAR:Cookie" "s:$SQL:4" i
 ### 1. NAXSI_EXLOG 設定
 
 在 conf 檔裡的 server 部分新增設定：
-```bash
-$ vim /usr/local/nginx/conf/nginx.conf
 
+```bash
+$ vim /usr/local/nginx/conf/vhost/xxx.conf
+
+$ vim /usr/local/nginx/conf/nginx.conf
+```
+
+裡面設定：  
+```config
 server 
   {
     set $naxsi_extensive_log 1;  
@@ -402,14 +418,14 @@ server
 ```
 
 ### 2. NAXSI_EXLOG 的 log 畫面 
+會多出現一個 NAXSI_EXLOG，就表示開啟成功。
 
-圖片
+![](/assets/images/2022-10-13-Nginx-Naxsi-module-28/11.JPG)
 
 ## 十、(額外)將 Naxsi 加入 Fail2ban
 ### 1. Fail2ban 新增 naxsi 過濾器
 filter 的 conf 名稱可以自訂。 
 
-圖片
 ```bash
 $ vim /etc/fail2ban/filter.d/nginx-naxsi.conf
 ```
@@ -436,7 +452,7 @@ filter = nginx-naxsi
 action = iptables-multiport[name=nginx-naxsi, port="http,https", protocol=tcp]
 logpath = /home/wwwlogs/naxsi_attach.log
 maxretry = 6
-bantime = -1 
+bantime = -1 # 封鎖一輩子！
 ```
 
 
