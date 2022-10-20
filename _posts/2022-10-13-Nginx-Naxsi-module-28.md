@@ -317,7 +317,7 @@ http://localhost/?id=<>
 在終端機上面存取有設定 Naxsi 的網站：
 ```config
 $ curl -IL "http://x.x.x.x/?a=<>"
-$ wget "https://newgame.fish0915.com/?<>"
+$ wget "https://xxx.xxx.com/?<>"
 ```
 
 ## 八、攔截成功畫面與分析
