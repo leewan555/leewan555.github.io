@@ -35,6 +35,7 @@ WAF（Web Application Firewall，網站應用程式防火牆），主要為保�
  - 如果網站有蒐集 cookie、用戶資料、表單紀錄，建議使用 WAF  
 
  ![](/assets/images/2022-10-13-Nginx-Naxsi-module-28/WAF.JPG)
+ （圖片來源：cloudmax 部落格）
       
 
 ## 二、WAF 優缺點
