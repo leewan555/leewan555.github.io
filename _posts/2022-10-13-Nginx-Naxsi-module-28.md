@@ -17,26 +17,31 @@ tags:
 | 系統與使用工具 | 
 | ----- |  
 | Centos 7.6 | 
-| nginx/1.16.1 | 
+| nginx/1.16.1 |
+| Naxsi 1.3 |  
 
 
 ## 一、WAF 介紹
-WAF 會分析網路行為，可以保護自己不小心製造出的漏洞，但只能即時保護應用程式，不能修復漏洞，不過在防禦的同時，可以有緩衝時間修復應用程式的漏洞。
+WAF（Web Application Firewall，網站應用程式防火牆），主要為保護網站應用程式，透過監控及過濾 HTTP/HTTPS 請求來分析網路行為，拒絕可疑、惡意流量進入網站，只讓安全且正常的流量通過。    
+
+只能即時保護應用程式，不能修復漏洞，但在防禦的同時，可以有緩衝時間修復應用程式的漏洞。   
 
 方式：依據事先設計好的安全政策，發掘違反安全政策的封包。  
-目的：保護web應用程式，防禦 XSS 及 SQL injection 等攻擊。  
+目的：保護 web 應用程式，防禦 XSS 及 SQL injection 等攻擊。  
 
  - 支持 POST/GET  
  - 位於網頁瀏覽者與網頁伺服器中間，專責分析與過濾 「Layer7 應用層」 的網路流量  
  - 有些更強大的甚至可以掃描惡意木馬文件、防竄改、伺服器優化、備份  
  - 如果網站有蒐集 cookie、用戶資料、表單紀錄，建議使用 WAF  
+
+ ![](/assets/images/2022-10-13-Nginx-Naxsi-module-28/WAF.JPG)
       
 
 ## 二、WAF 優缺點
 
 | 優點 | 缺點 |  
 | ----- | ----- |   
-| 1. 開箱即用，便宜甚至免費 | 1. 誤殺、漏報 |  
+| 1. 開箱即用 | 1. 誤殺、漏報 |  
 | 2. 管理方便，介面友好 | 2. 只適合中小型網站 |  
 | 3. 功能豐富 | 3. 必須客製化規則才能有效的抵擋攻擊 |  
 |  | 4. 功能強大的 WAF 很貴 |  
@@ -76,7 +81,7 @@ MainRule "str:@@" "msg:double arobase (@@)" "mz:BODY|URL|ARGS|$HEADERS_VAR:Cooki
 ```
 {% endraw %}
 
-## 五、Naxsi 計分方式與攔截分數介紹
+## 五、Naxsi 規則與攔截分數介紹
 ### 1. 規則解說與計分方式
 
 > 這是 `naxsi_core.rules` 內的部份規則。  
@@ -85,9 +90,9 @@ MainRule "str:@@" "msg:double arobase (@@)" "mz:BODY|URL|ARGS|$HEADERS_VAR:Cooki
 {% raw %}
 | 規則 | 規則解說 |  
 | ----- | ----- |       
-| id 為 1001 的規則 | `MainRule "str:\"" "msg:double quote" "mz:BODY|URL|ARGS|$HEADERS_VAR:Cookie" "s:$SQL:8,$XSS:8" id:1001;` <br> 表示如果在請求體(BODY)，統一資源定位符(URL)，請求參數(ARGS)，請求標題(Cookie)任何地方出現了雙引號(")，就表示該請求可能是 SQL 注入或是 XSS 攻擊，判斷分數為 8 。 |  
-| id 為 1002 的規則表示 | `MainRule "str:0x" "msg:0x, possible hex encoding" "mz:BODY|URL|ARGS|$HEADERS_VAR:Cookie" "s:$SQL:2" id:1002;` <br> 表示如果在請求體(BODY)，統一資源定位符(URL)，請求參數(ARGS)，請求標題(Cookie)任何地方出現了雙引號(")，就表示該請求可能是 SQL 注入或是 XSS 攻擊，判斷分數皆為2 。 |     
-| id 為 1013 的規則表示 | `MainRule "str:'" "msg:simple quote" "mz:ARGS|BODY|URL|$HEADERS_VAR:Cookie" "s:$SQL:4,$XSS:8" id:1013;` <br> 表示如果在請求體(BODY)，統一資源定位符(URL)，請求參數(ARGS)，請求標題(Cookie)任何地方出現了單引號(')，就表示該請求可能是 SQL 注入或是 XSS 攻擊，判斷分數為 4 跟 8 。|  
+| id 為 1001 的規則 | `MainRule "str:\"" "msg:double quote" "mz:BODY|URL|ARGS|$HEADERS_VAR:Cookie" "s:$SQL:8,$XSS:8" id:1001;` <br> 表示如果在請求體(BODY)，統一資源定位符(URL)，請求參數(ARGS)，請求標題(Cookie)任何地方出現了雙引號(")，就表示該請求可能是 SQL 注入或是 XSS 攻擊，判斷分數皆為 8。 |  
+| id 為 1002 的規則表示 | `MainRule "str:0x" "msg:0x, possible hex encoding" "mz:BODY|URL|ARGS|$HEADERS_VAR:Cookie" "s:$SQL:2" id:1002;` <br> 表示如果在請求體(BODY)，統一資源定位符(URL)，請求參數(ARGS)，請求標題(Cookie)任何地方出現了雙引號(")，就表示該請求可能是 SQL 注入或是 XSS 攻擊，判斷分數皆為 2。 |     
+| id 為 1013 的規則表示 | `MainRule "str:'" "msg:simple quote" "mz:ARGS|BODY|URL|$HEADERS_VAR:Cookie" "s:$SQL:4,$XSS:8" id:1013;` <br> 表示如果在請求體(BODY)，統一資源定位符(URL)，請求參數(ARGS)，請求標題(Cookie)任何地方出現了單引號(')，就表示該請求可能是 SQL 注入或是 XSS 攻擊，判斷分數為 4 跟 8。|  
 
 {% endraw %}
 
@@ -96,30 +101,21 @@ MainRule "str:@@" "msg:double arobase (@@)" "mz:BODY|URL|ARGS|$HEADERS_VAR:Cooki
 > 這是在 `nginx.conf` 內的設定，最終分數可以自訂，一旦累積的分數到達設定的標準，就會攔截並回報錯誤，詳細設定方式底下介紹。  
 {: .prompt-info }
 
+
+{% raw %}
+
 ```config
-# 開啟 naxsi
-SecRulesEnabled;
+# 設定 Naxsi 何時行動，可自行調整阻擋的分數，當請求達到此分數時，請求將被拒絕
+# 以下設定為當分數累積到到 8 (或 4)後就阻擋
 
-# 學習模式 預設關閉
-#LearningMode; 
-
-# 透過 libinjection 判斷 SQL 注入和 XSS 攻擊
-LibInjectionSql;
-LibInjectionXss;
-
-# 拒絕訪問時展示的頁面 
-DeniedUrl "/RequestDenied";  
-
-# 設定 naxsi 何時行動，當次數到8(或5)次後就阻擋，設定阻擋的分數，可以自行調整，當請求達到關鍵分數時，該請求將被拒絕
 CheckRule "$SQL >= 8" BLOCK;  
 CheckRule "$RFI >= 8" BLOCK;
 CheckRule "$TRAVERSAL >= 4" BLOCK;
 CheckRule "$UPLOAD >= 4" BLOCK;
 CheckRule "$XSS >= 8" BLOCK;
-
-# naxsi 的 log 位置設定
-error_log /home/wwwlogs/naxsi_attach.log;
 ```
+{% endraw %}
+
 
 
 ## 六、安裝 Naxsi 模組
@@ -144,19 +140,19 @@ $ git clone https://github.com/nbs-system/naxsi.git
 
 ### 4. 路徑整理
 ```config
-# 從 Github 下載的 naxsi 位置
+從 Github 下載的 Naxsi 位置
 /usr/local/naxsi
 
-# naxsi主要資料夾
+naxsi主要資料夾
 /usr/local/naxsi/naxsi_src
 
-# naxsi 規則檔
+naxsi 規則檔
 /usr/local/naxsi/naxsi_config/naxsi_core.rules
 ```
 
 ### 5. 編譯 Nginx
 要在有 configure 的那個資料夾底下編譯，模組安裝路徑可以用絕對路徑比較保險，
-使用 `--add-module` 把 naxsi 加進去。  
+使用 `--add-dynamic-module` 把 Naxsi 加進去。  
 
 {% raw %}
 ```bash
@@ -214,21 +210,35 @@ $ cp /usr/local/nginx_module/naxsi/naxsi_config/naxsi_core.rules  /usr/local/ngi
 {% raw %}
 ```bash
 $ vim /usr/local/nginx/conf/naxsi_custom.rules
+```
 
+```config
+# 開啟 naxsi
 SecRulesEnabled;
-#LearningMode;
+
+# 學習模式 預設關閉
+#LearningMode; 
+
+# 透過 libinjection 判斷 SQL 注入和 XSS 攻擊
 LibInjectionSql;
 LibInjectionXss;
-DeniedUrl "/RequestDenied";
 
-CheckRule "$SQL >= 8" BLOCK;
+# 拒絕訪問時展示的頁面 
+DeniedUrl "/RequestDenied";  
+
+# 設定 Naxsi 何時行動，可自行調整阻擋的分數，當請求達到此分數時，請求將被拒絕
+# 以下設定為當分數累積到到 8 (或 4)後就阻擋
+CheckRule "$SQL >= 8" BLOCK;  
 CheckRule "$RFI >= 8" BLOCK;
 CheckRule "$TRAVERSAL >= 4" BLOCK;
 CheckRule "$UPLOAD >= 4" BLOCK;
 CheckRule "$XSS >= 8" BLOCK;
+
+# Naxsi 的 log 位置設定
 error_log /home/wwwlogs/naxsi_attach.log;
 ```
 {% endraw %}
+
 
 ![](/assets/images/2022-10-13-Nginx-Naxsi-module-28/3.JPG)
 
@@ -315,7 +325,7 @@ http://localhost/?id=<>
 ```
 ### 2. 主機上測試 
 在終端機上面存取有設定 Naxsi 的網站：
-```config
+```bash
 $ curl -IL "http://x.x.x.x/?a=<>"
 $ wget "https://xxx.xxx.com/?<>"
 ```
@@ -369,7 +379,7 @@ MainRule "str:<" "msg:html open tag" "mz:ARGS|URL|BODY|$HEADERS_VAR:Cookie" "s:$
 | 對方IP | ip=223.58.42.103& | 
 | 請求的主機名　| server=taipei.test.com& | 
 | uri | uri=/=a<>& | 
-| naxsi 版本　| vers=1.3& |  
+| Naxsi 版本　| vers=1.3& |  
 | 總共請求 20 次　| total_processed=20& |  
 | 總共阻擋 3 次　| total_blocked=3& |  
 | 設定：攔截　| config=block& |  
@@ -388,7 +398,7 @@ MainRule "str:<" "msg:html open tag" "mz:ARGS|URL|BODY|$HEADERS_VAR:Cookie" "s:$
 
 
 ## 九、(額外)開啟 NAXSI_EXLOG
-開啟 NAXSI_EXLOG，可以記錄具體觸發 naxsi 攔截規則的請求內容，內容紀錄正常和異常的請求，方便後續分析攔截的是攻擊請求還是誤判。
+開啟 NAXSI_EXLOG，可以記錄具體觸發 Naxsi 攔截規則的請求內容，內容紀錄正常和異常的請求，方便後續分析攔截的是攻擊請求還是誤判。
 
 {% raw %}
 
@@ -423,7 +433,7 @@ server
 ![](/assets/images/2022-10-13-Nginx-Naxsi-module-28/11.JPG)
 
 ## 十、(額外)將 Naxsi 加入 Fail2ban
-### 1. Fail2ban 新增 naxsi 過濾器
+### 1. Fail2ban 新增 Naxsi 過濾器
 filter 的 conf 名稱可以自訂。 
 
 ```bash
