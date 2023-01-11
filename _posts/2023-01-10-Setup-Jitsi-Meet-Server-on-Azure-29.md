@@ -2,7 +2,7 @@
 title:  "將 Jitsi meet 架設在 Azure 雲端上"
 slug:  2023-01-10-Setup-Jitsi-Meet-Server-on-Azure-29
 date:  2023-01-10
-excerpt: 唐鳳曾經推薦過的工具耶~
+excerpt: 唐鳳推薦的工具耶~
 categories:
   - Ubuntu
   - Azure
