@@ -24,7 +24,7 @@ tags:
 ## 一、ngx_http_limit_req_module 寫法介紹
 
 ```config
-# 保存 1MB 的 ip 的 request 紀錄，每秒接2個 request (2r/s)
+# 保存 10MB 的 ip 的 request 紀錄，每分鐘可以接受 100 個 request。
 limit_req_zone $binary_remote_addr zone=mylimit:10m rate=100r/m;
 ```
 
