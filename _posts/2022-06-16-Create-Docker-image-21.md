@@ -44,10 +44,10 @@ $ docker images
 ```
 
 使用 `docker images` 就可以看到剛剛 commit 出來的 image 檔。  
-![](/assets/images/2022-06-16-Create-Docker-image-21/1.JPG)  
+![](/assets/images/2022-06-16-Create-Docker-image-21/1.jpg)  
 
 再來執行剛剛 commit 出來的 docker-hello-commit，成功！      
-![](/assets/images/2022-06-16-Create-Docker-image-21/2.JPG)  
+![](/assets/images/2022-06-16-Create-Docker-image-21/2.jpg)  
 
 ## 二、用 Bulid 指令自動化產生新的 Image
 > Dockerfile 的檔案名稱有大小寫的分別。   

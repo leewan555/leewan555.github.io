@@ -26,7 +26,7 @@ $ docker search <軟體名稱>
 # 尋找 nginx 的 Image 檔
 $ docker search nginx
 ```
-![](/assets/images/2022-05-28-Docker-Command-18/1.JPG)
+![](/assets/images/2022-05-28-Docker-Command-18/1.jpg)
 
 
 ### 2. 下載搜尋到的 Docker Image
@@ -37,13 +37,13 @@ $ docker pull <Docker Image 名稱>
 # 下載 nginx 的 Image 檔
 $ docker pull nginx
 ```
-![](/assets/images/2022-05-28-Docker-Command-18/2.JPG)
+![](/assets/images/2022-05-28-Docker-Command-18/2.jpg)
 
 ### 3. 查看已經下載過的 Docker image 檔
 ```bash
 $ docker images
 ```
-![](/assets/images/2022-05-28-Docker-Command-18/3.JPG)
+![](/assets/images/2022-05-28-Docker-Command-18/3.jpg)
 
 ## 二、啟動一個 Docker Container
 ```bash
@@ -56,7 +56,7 @@ $ docker run -p 8080:80 -d nginx
 上述例子是要用 nginx 的 docker images 以 Detach 的方式在主機的 8080 port 上提供服務，  
 所以啟動這個 Container 後，可以在瀏覽器上用 http://127.0.0.1:8080 開啟網頁。
 
-![](/assets/images/2022-05-28-Docker-Command-18/4.JPG)
+![](/assets/images/2022-05-28-Docker-Command-18/4.jpg)
 
 ## 三、解決 Container 啟動後就結束的問題
 Container 在作業系統也是被視為一隻執行中的行程（Process），  
@@ -71,7 +71,7 @@ $ docker ps -a
 ```
 STATUS: 顯示 Container 已經啟動多久了。  
 
-![](/assets/images/2022-05-28-Docker-Command-18/5.JPG)
+![](/assets/images/2022-05-28-Docker-Command-18/5.jpg)
 
 ## 五、啟動和停止和重新啟動 Container 
 ### (1) 啟動 Container  
@@ -156,9 +156,9 @@ $ docker inspect --format='{{json .State.Status}}' <Container 名稱或 ID>
 ```
 {% endraw %}
 
-![](/assets/images/2022-05-28-Docker-Command-18/7.JPG)
+![](/assets/images/2022-05-28-Docker-Command-18/7.jpg)
 
-![](/assets/images/2022-05-28-Docker-Command-18/8.JPG)
+![](/assets/images/2022-05-28-Docker-Command-18/8.jpg)
 
 
 
@@ -168,7 +168,7 @@ $ docker inspect --format='{{json .State.Status}}' <Container 名稱或 ID>
 ```bash
 $ docker ps -s 
 ```
-![](/assets/images/2022-05-28-Docker-Command-18/6.JPG)
+![](/assets/images/2022-05-28-Docker-Command-18/6.jpg)
 
 ## 十、查看哪一個 Container 用掉最多資源
 docker stats 會出現全畫面的"即時" Container 資源使用狀況，Ctrl + C 退出。
@@ -178,7 +178,7 @@ $ docker stats <Container 名稱或ID>
 # 加入 -a 列出所有的 Container，可以知道目前機器共有多少個 Container、哪些有在執行、哪些沒有在執行
 $ docker stats -a
 ```
-![](/assets/images/2022-05-28-Docker-Command-18/9.JPG)
+![](/assets/images/2022-05-28-Docker-Command-18/9.jpg)
 
 ## 十一、查看 Container 的 Log
 一次只能指定一個 Container，不支援同時查看多個 Container 的 Log 資訊。
@@ -204,7 +204,7 @@ $ docker logs --since 2m 81e3
 $ docker logs -f <Container 名稱或 ID>
 $ docker logs -f 81e3
 ```
-![](/assets/images/2022-05-28-Docker-Command-18/10.JPG)
+![](/assets/images/2022-05-28-Docker-Command-18/10.jpg)
 
 
 ## 十二、小技巧

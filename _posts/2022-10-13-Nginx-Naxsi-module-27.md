@@ -34,7 +34,7 @@ WAF（Web Application Firewall，網站應用程式防火牆），主要為保�
  - 有些更強大的甚至可以掃描惡意木馬文件、防竄改、伺服器優化、備份  
  - 如果網站有蒐集 cookie、用戶資料、表單紀錄，建議使用 WAF  
 
- ![](/assets/images/2022-10-13-Nginx-Naxsi-module-27/WAF.JPG)
+ ![](/assets/images/2022-10-13-Nginx-Naxsi-module-27/WAF.jpg)
  （圖片來源：cloudmax 部落格）
       
 
@@ -137,7 +137,7 @@ $ yum install pcre pcre-devel openssl openssl-devel -y
 ```bash
 $ git clone https://github.com/nbs-system/naxsi.git
 ```
-![](/assets/images/2022-10-13-Nginx-Naxsi-module-27/1.JPG)
+![](/assets/images/2022-10-13-Nginx-Naxsi-module-27/1.jpg)
 
 ### 4. 路徑整理
 ```config
@@ -194,7 +194,7 @@ configure arguments: --user=www --group=www --prefix=/usr/local/nginx --with-htt
 {% endraw %}
 
 
-![](/assets/images/2022-10-13-Nginx-Naxsi-module-27/2.JPG)
+![](/assets/images/2022-10-13-Nginx-Naxsi-module-27/2.jpg)
 
 ### 6. 將 Naxsi 主要設定檔複製進 Nginx 資料夾中
 ```bash
@@ -241,7 +241,7 @@ error_log /home/wwwlogs/naxsi_attach.log;
 {% endraw %}
 
 
-![](/assets/images/2022-10-13-Nginx-Naxsi-module-27/3.JPG)
+![](/assets/images/2022-10-13-Nginx-Naxsi-module-27/3.jpg)
 
 ### 8. 開始設定 
 #### (1) nginx.conf
@@ -278,8 +278,8 @@ server
 ```
 {% endraw %}
 
-![](/assets/images/2022-10-13-Nginx-Naxsi-module-27/4.JPG)
-![](/assets/images/2022-10-13-Nginx-Naxsi-module-27/5.JPG)
+![](/assets/images/2022-10-13-Nginx-Naxsi-module-27/4.jpg)
+![](/assets/images/2022-10-13-Nginx-Naxsi-module-27/5.jpg)
 
 #### (2) vhost.conf
 ```bash
@@ -302,7 +302,7 @@ server
   }
 ```
 
-![](/assets/images/2022-10-13-Nginx-Naxsi-module-27/6.JPG)
+![](/assets/images/2022-10-13-Nginx-Naxsi-module-27/6.jpg)
 
 ### 9. 重新啟動或重新讀取 Nginx
 ```bash
@@ -333,16 +333,16 @@ $ wget "https://xxx.xxx.com/?<>"
 ### 1. 當下攔截畫面
 觀察網站收到 SQL 注入的請求後有沒有報400。 
 
-![](/assets/images/2022-10-13-Nginx-Naxsi-module-27/7.JPG)
+![](/assets/images/2022-10-13-Nginx-Naxsi-module-27/7.jpg)
 
 
-![](/assets/images/2022-10-13-Nginx-Naxsi-module-27/8.JPG)
+![](/assets/images/2022-10-13-Nginx-Naxsi-module-27/8.jpg)
 
 
-![](/assets/images/2022-10-13-Nginx-Naxsi-module-27/9.JPG)
+![](/assets/images/2022-10-13-Nginx-Naxsi-module-27/9.jpg)
 
 ### 2. 攔截 log 查看
-![](/assets/images/2022-10-13-Nginx-Naxsi-module-27/10.JPG)
+![](/assets/images/2022-10-13-Nginx-Naxsi-module-27/10.jpg)
 
 ### 3. log 分析
 
@@ -428,7 +428,7 @@ server
 ### 2. NAXSI_EXLOG 的 log 畫面 
 會多出現一個 NAXSI_EXLOG，就表示開啟成功。
 
-![](/assets/images/2022-10-13-Nginx-Naxsi-module-27/11.JPG)
+![](/assets/images/2022-10-13-Nginx-Naxsi-module-27/11.jpg)
 
 ## 十、(額外)將 Naxsi 加入 Fail2ban
 ### 1. Fail2ban 新增 Naxsi 過濾器

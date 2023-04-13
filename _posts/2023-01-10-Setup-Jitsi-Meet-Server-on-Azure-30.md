@@ -1,6 +1,6 @@
 ---
 title:  "將 Jitsi meet 架設在 Azure 雲端上"
-slug:  2023-01-10-Setup-Jitsi-Meet-Server-on-Azure-29
+slug:  2023-01-10-Setup-Jitsi-Meet-Server-on-Azure-30
 date:  2023-01-10
 excerpt: 唐鳳推薦的工具耶~
 categories:
@@ -48,22 +48,22 @@ Jitsi 是免費且開源的視訊會議程式，支援多種語言，使用網�
 
 ## 三、Azure 開新機器及圖片介紹
 1. 建立資源，選擇 Ubuntu Server 20.04 tls。  
-![](/assets/images/2023-01-10-Setup-Jitsi-Meet-Server-on-Azure-29/1.JPG)  
+![](/assets/images/2023-01-10-Setup-Jitsi-Meet-Server-on-Azure-30/1.jpg)  
 
 2. 自訂資源群組名稱、機器名稱，並選擇區域。  
-![](/assets/images/2023-01-10-Setup-Jitsi-Meet-Server-on-Azure-29/2.JPG)  
+![](/assets/images/2023-01-10-Setup-Jitsi-Meet-Server-on-Azure-30/2.jpg)  
 
 3. 選擇機器大小，設定登入金鑰或密碼，對外 port 勾選 `[80,443,22]`，再按下左下角的`檢閱+建立`，建立新機器。  
-![](/assets/images/2023-01-10-Setup-Jitsi-Meet-Server-on-Azure-29/3.JPG)  
+![](/assets/images/2023-01-10-Setup-Jitsi-Meet-Server-on-Azure-30/3.jpg)  
 
 4. 在**網路**新增 Jitst 所需的 port`[80,443,10000,22,3478,5349]`，並命名為`port_jitsi`，前面已經設定過 80,443,22 了，現在又再設定一次是為了集中管理 Jitsi 所需的 port，實際上不影響。   
-![](/assets/images/2023-01-10-Setup-Jitsi-Meet-Server-on-Azure-29/4.JPG)  
+![](/assets/images/2023-01-10-Setup-Jitsi-Meet-Server-on-Azure-30/4.jpg)  
 
 5. 再**組態**設定 DNS 名稱標籤。
-![](/assets/images/2023-01-10-Setup-Jitsi-Meet-Server-on-Azure-29/5.JPG)  
+![](/assets/images/2023-01-10-Setup-Jitsi-Meet-Server-on-Azure-30/5.jpg)  
 
 6. 設定皆完成，可以開始連線至機器囉。
-![](/assets/images/2023-01-10-Setup-Jitsi-Meet-Server-on-Azure-29/6.JPG)  
+![](/assets/images/2023-01-10-Setup-Jitsi-Meet-Server-on-Azure-30/6.jpg)  
 
 ## 四、SSH 連線至機器
 ```bash
@@ -152,7 +152,7 @@ $ apt install -y jitsi-meet
 ## 十一、 在瀏覽器輸入網址
 myjitsi.test123.com  
 進入網站後即可開始使用基本的 Jitsi。
-![](/assets/images/2023-01-10-Setup-Jitsi-Meet-Server-on-Azure-29/7.JPG)   
+![](/assets/images/2023-01-10-Setup-Jitsi-Meet-Server-on-Azure-30/7.jpg)   
 
 
 大功告成！

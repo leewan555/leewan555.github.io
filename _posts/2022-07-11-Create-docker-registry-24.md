@@ -86,7 +86,7 @@ $ docker run -d -p 5000:5000 --name registry registry:2
 $ docker run -d -p 5000:5000 -v /usr/local/docker/registry:/var/lib/registry --name registry registry:2
 ```
 
-![](/assets/images/2022-07-11-Create-docker-registry-24/1.JPG) 
+![](/assets/images/2022-07-11-Create-docker-registry-24/1.jpg) 
 
 
 ### 2. 用指令或瀏覽器確認 Docker Registry 是否啟動成功
@@ -96,7 +96,7 @@ $ curl -LX GET 127.0.0.1:5000/v2
 {}
 ````
 
-![](/assets/images/2022-07-11-Create-docker-registry-24/2.JPG) 
+![](/assets/images/2022-07-11-Create-docker-registry-24/2.jpg) 
 
 
 也可以直接用瀏覽器開啟，如果正常啟動一樣會看到「{}」。  
@@ -107,7 +107,7 @@ $ curl -LX GET 127.0.0.1:5000/v2
 [http://x.x.x.x:5000/v2/](http://x.x.x.x:5000/v2 "http://x.x.x.x:5000/v2")
 
 
-![](/assets/images/2022-07-11-Create-docker-registry-24/3.JPG) 
+![](/assets/images/2022-07-11-Create-docker-registry-24/3.jpg) 
 
 
 ## 六、將 Docker Image 上傳到 Docker Registry
@@ -124,7 +124,7 @@ $ docker tag nginx x.x.x.x:5000/nginx_local
 # 查看標記後的 Image
 $ docker images
 ```
-![](/assets/images/2022-07-11-Create-docker-registry-24/4.JPG) 
+![](/assets/images/2022-07-11-Create-docker-registry-24/4.jpg) 
 
 ### 2. 將 Docker Image push 到 Docker Registry Server
 ```bash
@@ -133,7 +133,7 @@ $ docker push 127.0.0.1:5000/nginx_local
 
 在這邊遇到問題，所以沒有成功將 Docker Image Push 到 Docker Registry 上。
 
-![](/assets/images/2022-07-11-Create-docker-registry-24/5.JPG)
+![](/assets/images/2022-07-11-Create-docker-registry-24/5.jpg)
 
 這個錯誤訊息主要是因為安全性上的問題，需要修改 client 端的 Docker 設定。
 
@@ -147,7 +147,7 @@ $ vim /etc/docker/daemon.json
 }
 ````
 
-![](/assets/images/2022-07-11-Create-docker-registry-24/6.JPG)
+![](/assets/images/2022-07-11-Create-docker-registry-24/6.jpg)
 
 
 重新啟動 Docker，並重新 push docker image。
@@ -157,7 +157,7 @@ $ systemctl restart docker
 $ docker push 127.0.0.1:5000/nginx_local
 ```
 
-![](/assets/images/2022-07-11-Create-docker-registry-24/7.JPG)
+![](/assets/images/2022-07-11-Create-docker-registry-24/7.jpg)
 
 用瀏覽器開啟查詢：  
 
@@ -165,7 +165,7 @@ $ docker push 127.0.0.1:5000/nginx_local
 
 [http://x.x.x.x:5000/v2/_catalog](http://x.x.x.x:5000/v2/_catalog "http://x.x.x.x:5000/v2/_catalog")
 
-![](/assets/images/2022-07-11-Create-docker-registry-24/8.JPG)
+![](/assets/images/2022-07-11-Create-docker-registry-24/8.jpg)
 
 
 如果要下載剛剛上傳的 nginx_local，就用 `docker pull` 抓下來。

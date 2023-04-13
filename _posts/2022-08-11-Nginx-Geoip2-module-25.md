@@ -41,7 +41,7 @@ $ yum install nginx-module-geoip2
 
 安裝到一半會說"缺少訂閱所以停止"，並附上一個訂閱的網址，點進去看到自己的 IP，再按訂閱就會跳至付款畫面。  
 
-![](/assets/images/2022-08-11-Nginx-Geoip2-module-25/1.JPG)
+![](/assets/images/2022-08-11-Nginx-Geoip2-module-25/1.jpg)
 
 
 ### 如果安裝了這個 repo，但反悔想刪掉的話怎麼辦？
@@ -112,20 +112,20 @@ MaxMind 提供的資料庫有分為商業版 GeoIP2 和免費版 GeoLite2，免�
 [GeoLite2](https://www.maxmind.com/en/geolite2/signup?utm_source=kb&utm_medium=kb-link&utm_campaign=kb-create-account "GeoLite2")
 
 填寫完再去 mail 啟用和設定密碼後就代表註冊成功了！  
-![](/assets/images/2022-08-11-Nginx-Geoip2-module-25/2.JPG)
+![](/assets/images/2022-08-11-Nginx-Geoip2-module-25/2.jpg)
 
 ### 2. 建立 License Key
 登入 MaxMind 網站後，按左方 Manage License Keys，現在來要建立 License Key。  
 
 依照 `geoipupdate` 版本去選（我的 `geoipupdate` 版本是 2.5.0）。  
 
-![](/assets/images/2022-08-11-Nginx-Geoip2-module-25/3.JPG)
+![](/assets/images/2022-08-11-Nginx-Geoip2-module-25/3.jpg)
 
-![](/assets/images/2022-08-11-Nginx-Geoip2-module-25/4.JPG)
+![](/assets/images/2022-08-11-Nginx-Geoip2-module-25/4.jpg)
 
 之後會有 ID 跟 License Key，點選 Download Config，會自動下載一個 `GeoIP.conf` 檔案，將這個檔案覆蓋主機上的 `/etc/GeoIP.conf`。
 
-![](/assets/images/2022-08-11-Nginx-Geoip2-module-25/5.JPG)
+![](/assets/images/2022-08-11-Nginx-Geoip2-module-25/5.jpg)
 
 ### 3. 更新 Maxmind 資料庫
 
@@ -136,7 +136,7 @@ $ geoipupdate
 
 $ geoipupdate -v
 ```
-![](/assets/images/2022-08-11-Nginx-Geoip2-module-25/6.JPG)
+![](/assets/images/2022-08-11-Nginx-Geoip2-module-25/6.jpg)
 
 
 可以將指令寫進 crontab 排程，讓它定時更新 Maxmind 資料庫。  
@@ -161,7 +161,7 @@ $ mmdblookup --file /usr/share/GeoIP/GeoLite2-Country.mmdb --ip 47.52.76.54 coun
 
 $ mmdblookup --file /usr/share/GeoIP/GeoLite2-Country.mmdb --ip 47.52.76.54 country iso_code
 ```
-![](/assets/images/2022-08-11-Nginx-Geoip2-module-25/9.JPG)
+![](/assets/images/2022-08-11-Nginx-Geoip2-module-25/9.jpg)
 
 
 ## 五、Nginx 編譯 GeoIP 模組 
@@ -181,7 +181,7 @@ $ cd nginx-1.16.1
 
 $ ll
 ```
-![](/assets/images/2022-08-11-Nginx-Geoip2-module-25/10.JPG)
+![](/assets/images/2022-08-11-Nginx-Geoip2-module-25/10.jpg)
 
 ### 2. 查看 Nginx 原先有的模組
 先查看 Nginx 原本有什麼模組，當編譯新的模組時，原有的模組也要原封不動的寫進去，不然到時候編譯完成後會不見（就是底下 `configure arguments` 那段）。  
@@ -242,14 +242,14 @@ $ yum install libmaxminddb-devel
 ```bash
 $ nignx -V
 ```
-![](/assets/images/2022-08-11-Nginx-Geoip2-module-25/7.JPG)
+![](/assets/images/2022-08-11-Nginx-Geoip2-module-25/7.jpg)
 
 在 Nginx 的安裝路徑也會自動產生一個 `modules` 資料夾，且裡面有兩個檔案，有出現代表新增模組成功。  
 ```bash 
 /usr/local/nginx/modules/ngx_http_geoip2_module.so
 /usr/local/nginx/modules/ngx_stream_geoip2_module.so
 ```
-![](/assets/images/2022-08-11-Nginx-Geoip2-module-25/8.JPG)
+![](/assets/images/2022-08-11-Nginx-Geoip2-module-25/8.jpg)
 
 ## 六、Nginx.conf 或 vhost.conf 設定
 開始設定 nginx.conf。  
@@ -331,7 +331,7 @@ $ curl -IL x.x.x.x
 本篇文章使用的主機是來自 HK ，因此可以試著自己造訪自己，看看結果如何？ 
 
 在下圖可以看到，要造訪這台主機，結果會報 400 Bad Request 錯誤，所以 GeoIP2 模組的確有在好好運作～   
-![](/assets/images/2022-08-11-Nginx-Geoip2-module-25/11.JPG)
+![](/assets/images/2022-08-11-Nginx-Geoip2-module-25/11.jpg)
 
 
 那如果把 `HK yes;` 改成 `HK no;` 會如何呢？
@@ -345,7 +345,7 @@ HK no;  #no 就是不封鎖
 
 不過由此可知，如果沒有造訪的 IP 沒有在我們制定的名單內，就可以正常造訪主機或網站。    
 
-![](/assets/images/2022-08-11-Nginx-Geoip2-module-25/12.JPG)
+![](/assets/images/2022-08-11-Nginx-Geoip2-module-25/12.jpg)
 
 
 

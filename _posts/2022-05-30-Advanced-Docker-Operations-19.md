@@ -28,7 +28,7 @@ $ docker run --name <Container 名稱> -p <對外的埠號>:<預設的埠號> -d
 $ docker run --name nginx -p 8080:80 -d nginx
 $ docker ps -a
 ```
-![](/assets/images/2022-05-30-Advanced-Docker-Operations-19/1.JPG)  
+![](/assets/images/2022-05-30-Advanced-Docker-Operations-19/1.jpg)  
 
 Container 有自訂名稱後，就可以用指令去操作。  
 ```bash
@@ -51,7 +51,7 @@ docker run -e <變數名稱>=<變數值> -p <對外的埠號>:<預設的埠號> 
 $ docker run --name mysql -e MYSQL_ROOT_PASSWORD=123456789 -d mysql
 $ docker exec -it mysql mysql -p
 ```
-![](/assets/images/2022-05-30-Advanced-Docker-Operations-19/2.JPG)  
+![](/assets/images/2022-05-30-Advanced-Docker-Operations-19/2.jpg)  
 
 ## 三、docker run v.s. docker create?
 `docker create` 要建立一個新的 Container，需搭配 `docker start` 指令才會啟動，  
@@ -64,7 +64,7 @@ $ docker exec -it mysql mysql -p
 `docker create --name nginx-create -p 8081:80 nginx`
 -> 下指令後，Container 的狀態會是 `Created`
 
-![](/assets/images/2022-05-30-Advanced-Docker-Operations-19/3.JPG)  
+![](/assets/images/2022-05-30-Advanced-Docker-Operations-19/3.jpg)  
 
 ## 四、外掛 Container 的儲存空間，把資料存下來
 
@@ -90,7 +90,7 @@ $ docker run -v /var/www:/usr/share/nginx/html -name nginx-store -p 8080:80 -d n
 # 將本機上的 /home/nginx-test/nginx.conf 取代 Container 內的 /etc/nginx.nginx.conf
 $ docker run -v /home/nginx-test/nginx.conf:/etc/nginx/nginx.conf -v /var/www:/usr/share/nginx/html -name nginx-store -p 8080:80 -d nginx
 ```
-![](/assets/images/2022-05-30-Advanced-Docker-Operations-19/4.JPG)  
+![](/assets/images/2022-05-30-Advanced-Docker-Operations-19/4.jpg)  
 
 ## 五、直接執行 Container 內的程式或指令
 有些 Container 用途是被當作軟體工具包，`docker run` 可以直接在最後面加上想要執行的指令，讓 Container 一啟動完成後就執行指定的指令。  
@@ -145,7 +145,7 @@ $ docker exec -it <Container 名稱或 ID> <指令完整檔案路徑與名稱及
 $ docker run --name nginx-cmd -d nginx
 $ docker exec -it nginx-cmd /bin/bash
 ```
-![](/assets/images/2022-05-30-Advanced-Docker-Operations-19/5.JPG) 
+![](/assets/images/2022-05-30-Advanced-Docker-Operations-19/5.jpg) 
 
 ## 九、Container 綁定指定的 IP 位址（正式的服務環境必用）
 如果只有指定埠號而沒有指定 Container 要綁到哪個 IP 位址，預設會綁定到主機的 0.0.0.0，表示這個主機上的任一組 IP 都可以連到這個 Container。
@@ -186,9 +186,9 @@ $ docker exec -it nginx-a /bin/bash
 
 root@e8b718be1d25:/# ping nginx-b
 ```
-![](/assets/images/2022-05-30-Advanced-Docker-Operations-19/6.JPG) 
+![](/assets/images/2022-05-30-Advanced-Docker-Operations-19/6.jpg) 
 
-![](/assets/images/2022-05-30-Advanced-Docker-Operations-19/7.JPG) 
+![](/assets/images/2022-05-30-Advanced-Docker-Operations-19/7.jpg) 
 
 
 ## 十一、查看及刪除 Docker 網路
@@ -199,7 +199,7 @@ $ docker network inspect <Docker 網路名稱>
 # 刪除 Docker 網路
 $ docker network rm <Docker 網路名稱>
 ```
-![](/assets/images/2022-05-30-Advanced-Docker-Operations-19/8.JPG) 
+![](/assets/images/2022-05-30-Advanced-Docker-Operations-19/8.jpg) 
 
 Docker 網路被移除後，所有已加入該 Docker 網路的 Container 都會無法再被啟動，因為它們會找不到需要的 Docker 網路可用。  
 
@@ -272,7 +272,7 @@ $ docker inspect --format='{{json .Mounts}}' nginx-vol
 ```
 {% endraw %}
 
-![](/assets/images/2022-05-30-Advanced-Docker-Operations-19/9.JPG)  
+![](/assets/images/2022-05-30-Advanced-Docker-Operations-19/9.jpg)  
 `Name`: 新建的 Data Volume 名稱。  
 `Source`: Data volume 在主機的實際位址和路徑。  
 
@@ -303,7 +303,7 @@ $ docker volume inspect <volume 名稱>
 
 $ docker volume inspect nginx-html
 ```
-![](/assets/images/2022-05-30-Advanced-Docker-Operations-19/10.JPG) 
+![](/assets/images/2022-05-30-Advanced-Docker-Operations-19/10.jpg) 
 
 ### (4) 刪除 Docker Data volume
 Data volume 不會自動被刪除，必須要手動操作刪除指令，  

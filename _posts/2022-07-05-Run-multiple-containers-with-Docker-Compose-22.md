@@ -84,7 +84,7 @@ docker-compose.yml 是採用 YAML 檔案格式來撰寫，是一種以「鍵/值
 
 ### 1. docker-compose.yml 範例
 
-![](/assets/images/2022-07-05-Run-multiple-containers-with-Docker-Compose-22/1.JPG)  
+![](/assets/images/2022-07-05-Run-multiple-containers-with-Docker-Compose-22/1.jpg)  
 
 ### 2. 驗證 docker-compose.yml 內容（不會真正執行）
 ```bash
@@ -95,7 +95,7 @@ $ docker-compose config
 $ docker-compose config -q
 $ docker-compose -f /usr/local/docker-test/node-red/docker-compose.yml config -q
 ```
-![](/assets/images/2022-07-05-Run-multiple-containers-with-Docker-Compose-22/2.JPG)  
+![](/assets/images/2022-07-05-Run-multiple-containers-with-Docker-Compose-22/2.jpg)  
 
 ### 3. 啟動 docker-compose.yml 內所有的服務
 > 用 docker-compose.yml 啟動服務，services 名稱前面預設是資料夾名，可以加上 `-p` 選項指定專案名稱。  
@@ -106,11 +106,11 @@ $ docker-compose -f /usr/local/docker-test/node-red/docker-compose.yml config -q
 $ docker-compose up -d
 $ docker-compose -p 專案名稱 up -d
 ```
-![](/assets/images/2022-07-05-Run-multiple-containers-with-Docker-Compose-22/3.JPG)    
+![](/assets/images/2022-07-05-Run-multiple-containers-with-Docker-Compose-22/3.jpg)    
 
-![](/assets/images/2022-07-05-Run-multiple-containers-with-Docker-Compose-22/4.JPG)    
+![](/assets/images/2022-07-05-Run-multiple-containers-with-Docker-Compose-22/4.jpg)    
 
-![](/assets/images/2022-07-05-Run-multiple-containers-with-Docker-Compose-22/5.JPG)    
+![](/assets/images/2022-07-05-Run-multiple-containers-with-Docker-Compose-22/5.jpg)    
  
 
 可以看到剛建立的資料卷及網路前面都會加上「nodered_」字串，是因為那個字串預設會是 docker-compose.yml 所在資料夾的名稱，並會移除資料夾名稱中的非英數字元，如果想指定專案名稱可以加上 `-p` 選項。    
